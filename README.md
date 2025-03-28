@@ -1,17 +1,9 @@
 <div align="center">
-<h1>Chrome/Firefox extension build with <br/>React + Vite + TypeScript + MaterialUI</h1>
+<h1>Track updates for your dependencies</h1>
 </div>
 
-## Table of Contents
-
-- [Intro](#intro)
-- [Features](#features)
-- [Usage](#usage)
-- [References](#references)
-
-
 ## Intro <a name="intro"></a>
-This extension let you track updates for your Github repositories dependencies
+Chrome/Firefox extension build with <br/>React + Vite + TypeScript + MaterialUI
 
 ## Features <a name="features"></a>
 - [React 19](https://reactjs.org/)
