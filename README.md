@@ -9,7 +9,7 @@
 
 ## Intro
 
-Chrome/Firefox extension build with <b>React + Vite + TypeScript + MaterialUI<b>
+Chrome/Firefox extension build with <b>React + Vite + TypeScript + MaterialUI</b>
 
   
 
@@ -85,6 +85,6 @@ For Firefox
 
   
 
-## References <a  name="references"></a>
+## References
 
 Thanks to [@JohnBra](https://github.com/JohnBra) for providing template https://github.com/JohnBra/vite-web-extension
