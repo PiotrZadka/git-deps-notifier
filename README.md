@@ -3,7 +3,7 @@
 </div>
 
 ## Intro <a name="intro"></a>
-Chrome/Firefox extension build with <br/>React + Vite + TypeScript + MaterialUI
+Chrome/Firefox extension build with <b>React + Vite + TypeScript + MaterialUI<b>
 
 ## Features <a name="features"></a>
 - [React 19](https://reactjs.org/)
