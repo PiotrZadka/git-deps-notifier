@@ -1,0 +1,53 @@
+<div align="center">
+<h1>Chrome/Firefox extension build with <br/>React + Vite + TypeScript + MaterialUI</h1>
+</div>
+
+## Table of Contents
+
+- [Intro](#intro)
+- [Features](#features)
+- [Usage](#usage)
+- [References](#references)
+
+
+## Intro <a name="intro"></a>
+This extension let you track updates for your Github repositories dependencies
+
+## Features <a name="features"></a>
+- [React 19](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Material UI](https://mui.com/material-ui/)
+- [ESLint](https://eslint.org/)
+- [Chrome Extension Manifest Version 3](https://developer.chrome.com/docs/extensions/mv3/intro/)
+
+## Usage <a name="usage"></a>
+
+#### Developing and building
+Running `dev` or `build` commands without specifying the browser target will build
+for Chrome by default.
+1. Run `nvm use` (check .nvmrc for node version)
+3. Run `yarn` 
+4. Run `yarn dev[:chrome|:firefox]`
+
+Running a `dev` command will build the extension and watch for changes in the 
+source files. Changing the source files will refresh the corresponding 
+`dist_<chrome|firefox>` folder.
+
+To create an optimized production build, run `yarn build[:chrome|:firefox]`
+
+#### Load your extension
+For Chrome
+1. Open - Chrome browser
+2. Access - [chrome://extensions](chrome://extensions)
+3. Tick - Developer mode
+4. Find - Load unpacked extension
+5. Select - `dist_chrome` folder in this project (after dev or build)
+
+For Firefox
+1. Open - Firefox browser
+2. Access - [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox)
+3. Click - Load temporary Add-on
+4. Select - any file in `dist_firefox` folder (i.e. `manifest.json`) in this project (after dev or build)
+
+## References <a name="references"></a>
+Thanks to @JohnBra for providing template https://github.com/JohnBra/vite-web-extension

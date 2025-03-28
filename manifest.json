@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Git Deps Notifier",
+  "description": "A browser extension to notify about new versions of dependencies in GitHub repositories.",
+  "action": {
+    "default_popup": "src/pages/popup/index.html"
+  },
+  "icons": {
+    "48": "ext_icon_48.png"
+  },
+  "permissions": []
+}
