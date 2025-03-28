@@ -7,13 +7,13 @@
 
   
 
-## Intro <a  name="intro"></a>
+## Intro
 
 Chrome/Firefox extension build with <b>React + Vite + TypeScript + MaterialUI<b>
 
   
 
-## Features <a  name="features"></a>
+## Features
 
 - [React 19](https://reactjs.org/)
 
@@ -27,11 +27,11 @@ Chrome/Firefox extension build with <b>React + Vite + TypeScript + MaterialUI<b>
 
   
 
-## Usage <a  name="usage"></a>
+## Usage
 
   
 
-#### Developing and building
+### Developing and building
 
 Running `dev` or `build` commands without specifying the browser target will build
 
@@ -57,7 +57,7 @@ To create an optimized production build, run `yarn build[:chrome|:firefox]`
 
   
 
-#### Load your extension to browser
+### Load your extension to browser
 
 For Chrome
 
