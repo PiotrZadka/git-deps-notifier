@@ -39,7 +39,7 @@ for Chrome by default.
 
 1. Run `nvm use` (check .nvmrc for node version)
 
-3. Run `yarn`
+3. Run `yarn install`
 
 4. Run `yarn dev[:chrome|:firefox]`
 
