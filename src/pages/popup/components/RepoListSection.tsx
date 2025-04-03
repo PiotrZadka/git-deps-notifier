@@ -1,49 +1,26 @@
-import {
-	List,
-	ListItemText,
-	ListItemButton,
-	Divider,
-	Button,
-	Box,
-	Typography,
-	Tooltip,
-} from "@mui/material";
+import { useState } from "react";
+import { RepoPage } from "./RepoPage";
+import { RepoList } from "./RepoList";
 
-interface RepoListProps {
-	repos: string[];
-	onRemove: (repo: string) => void;
-}
+import type { RepoListProps } from "../../../types/RepoListTypes";
 
-export const RepoList = ({ repos, onRemove }: RepoListProps) => {
+export const RepoListSection = ({ repos, onRemove }: RepoListProps) => {
+	const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
+
 	return (
-		<div>
-			<List>
-				<ListItemText primary="Your repositories" />
-			</List>
-			<Divider />
-			<List>
-				{repos.map((repo) => (
-					<Box key={repo} display="flex" alignItems="center" gap={2}>
-						<ListItemButton key={repo}>
-							<Tooltip title={repo} arrow>
-								<Typography
-									sx={{
-										overflow: "hidden",
-										textOverflow: "ellipsis",
-										whiteSpace: "nowrap",
-										maxWidth: "250px",
-									}}
-								>
-									<ListItemText primary={repo} />
-								</Typography>
-							</Tooltip>
-						</ListItemButton>
-						<Button onClick={() => onRemove(repo)} variant="text">
-							Remove
-						</Button>
-					</Box>
-				))}
-			</List>
-		</div>
+		<>
+			{selectedRepo ? (
+				<RepoPage
+					selectedRepo={selectedRepo}
+					setSelectedRepo={setSelectedRepo}
+				/>
+			) : (
+				<RepoList
+					onRemove={onRemove}
+					repos={repos}
+					setSelectedRepo={setSelectedRepo}
+				/>
+			)}
+		</>
 	);
 };
