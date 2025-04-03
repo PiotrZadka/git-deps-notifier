@@ -1,6 +1,7 @@
 import { RepoList } from "./RepoListSection";
 import { AddRepoSection } from "./AddRepoSection";
 import { useState, useEffect } from "react";
+import { Box } from "@mui/material";
 
 export const LandingPage = () => {
 	const [repos, setRepos] = useState<string[]>([]);
@@ -29,9 +30,9 @@ export const LandingPage = () => {
 	};
 
 	return (
-		<>
+		<Box sx={{ m: 2 }}>
 			<RepoList repos={repos} onRemove={removeRepo} />
 			<AddRepoSection onAdd={addRepo} repos={repos} />
-		</>
+		</Box>
 	);
 };
