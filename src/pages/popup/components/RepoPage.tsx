@@ -1,9 +1,6 @@
 import { Divider, Button, Box, Typography } from '@mui/material';
 import { SelectedRepoType } from '@src/types';
-
-const formatRepoName = (repoUrl: string): string | null => {
-  return repoUrl.split('/').pop() || '';
-};
+import { formatRepoName } from '@src/utils/utils';
 
 export const RepoPage = ({
   selectedRepo,

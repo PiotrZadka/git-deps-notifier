@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { LandingPageContext } from '../../../context/langing-page-context';
+import { LandingPageContext } from '../../../context/landing-page-context';
 import { RepoPage } from './RepoPage';
 import { RepoList } from './RepoList';
 

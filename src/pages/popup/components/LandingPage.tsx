@@ -15,12 +15,12 @@ export const LandingPage = () => {
 
   const addRepo = (repoUrl: string): boolean => {
     if (repos.includes(repoUrl)) {
-      return false; // Repo already exists
+      return false;
     }
     const updatedRepos = [...repos, repoUrl];
     setRepos(updatedRepos);
     localStorage.setItem('repoUrl', JSON.stringify(updatedRepos));
-    return true; // Repo added successfully
+    return true;
   };
 
   const removeRepo = (repoToRemove: string) => {

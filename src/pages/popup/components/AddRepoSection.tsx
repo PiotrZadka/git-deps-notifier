@@ -1,16 +1,11 @@
 import { Button, TextField, Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import { AddRepoSectionProps } from '../../../types';
+import { isValidGitHubUrl } from '@src/utils/utils';
 
 export const AddRepoSection = ({ onAdd, repos }: AddRepoSectionProps) => {
   const [repoUrl, setRepoUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-  const isValidGitHubUrl = (url: string) => {
-    const githubUrlRegex =
-      /^(https?:\/\/)?(www\.)?github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
-    return githubUrlRegex.test(url);
-  };
 
   const handleAddClick = () => {
     const trimmedRepoUrl = repoUrl.trim();
