@@ -1,26 +1,23 @@
-import { useState } from "react";
-import { RepoPage } from "./RepoPage";
-import { RepoList } from "./RepoList";
+import { useContext } from 'react';
+import { LandingPageContext } from '../../../context/langing-page-context';
+import { RepoPage } from './RepoPage';
+import { RepoList } from './RepoList';
 
-import type { RepoListProps } from "../../../types/RepoListTypes";
+import type { RepoListProps } from '../../../types';
 
 export const RepoListSection = ({ repos, onRemove }: RepoListProps) => {
-	const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
+  const { selectedRepo, setSelectedRepo } = useContext(LandingPageContext);
 
-	return (
-		<>
-			{selectedRepo ? (
-				<RepoPage
-					selectedRepo={selectedRepo}
-					setSelectedRepo={setSelectedRepo}
-				/>
-			) : (
-				<RepoList
-					onRemove={onRemove}
-					repos={repos}
-					setSelectedRepo={setSelectedRepo}
-				/>
-			)}
-		</>
-	);
+  return (
+    <>
+      {selectedRepo ? (
+        <RepoPage
+          selectedRepo={selectedRepo}
+          setSelectedRepo={setSelectedRepo}
+        />
+      ) : (
+        <RepoList repos={repos} onRemove={onRemove} />
+      )}
+    </>
+  );
 };
