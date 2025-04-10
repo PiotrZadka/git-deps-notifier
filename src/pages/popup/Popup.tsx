@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "@pages/popup/index.css";
-import { LandingPage } from "./components/LandingPage";
+import { Repositories } from "./Views/RepositoriesView/Repositories";
 import { LandingPageContext } from "../../context/landing-page-context";
 
 export const Popup = () => {
@@ -9,7 +9,7 @@ export const Popup = () => {
 	return (
 		<>
 			<LandingPageContext.Provider value={{ selectedRepo, setSelectedRepo }}>
-				<LandingPage />
+				<Repositories />
 			</LandingPageContext.Provider>
 		</>
 	);
