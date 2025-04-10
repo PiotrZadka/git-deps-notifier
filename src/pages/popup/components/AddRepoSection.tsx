@@ -1,6 +1,6 @@
 import { Button, TextField, Box, Typography } from '@mui/material';
 import { useState } from 'react';
-import { AddRepoSectionProps } from '../../../types';
+import type { AddRepoSectionProps } from '../../../types';
 import { isValidGitHubUrl } from '@src/utils/utils';
 
 export const AddRepoSection = ({ onAdd, repos }: AddRepoSectionProps) => {

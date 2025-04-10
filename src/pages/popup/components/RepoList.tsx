@@ -10,7 +10,7 @@ import {
   Typography,
   Tooltip,
 } from '@mui/material';
-import { RepoListProps } from '../../../types';
+import type { RepoListProps } from '../../../types';
 
 export const RepoList = ({ repos, onRemove }: RepoListProps) => {
   const { setSelectedRepo } = useContext(LandingPageContext);

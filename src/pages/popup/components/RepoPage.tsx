@@ -9,7 +9,7 @@ import {
   IconButton,
 } from '@mui/material';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import { SelectedRepoType } from '@src/types';
+import type { SelectedRepoProps } from '@src/types';
 import { formatRepoName } from '@src/utils/utils';
 import { renderDependencyIcon } from '../../../utils/utils';
 
@@ -24,7 +24,7 @@ const mockDependenciesList = [
 export const RepoPage = ({
   selectedRepo,
   setSelectedRepo,
-}: SelectedRepoType) => {
+}: SelectedRepoProps) => {
   const extratedRepoName = formatRepoName(selectedRepo);
   return (
     <div>
