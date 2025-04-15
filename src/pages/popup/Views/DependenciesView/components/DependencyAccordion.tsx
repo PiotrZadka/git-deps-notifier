@@ -1,20 +1,19 @@
 import {
-	Divider,
 	ListItemButton,
 	ListItemText,
 	Tooltip,
 	Box,
 	Typography,
-	IconButton,
 	Accordion,
 	AccordionSummary,
 	AccordionDetails,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import type {
-	DependencyListItemProps,
+	UpdatedDependencyListItemProps,
 	DependencyAccordionProps,
 } from "@src/types";
+import { renderDependencyIcon } from "@src/utils/utils";
 
 export const DependencyAccordion = ({
 	dependencies,
@@ -31,11 +30,17 @@ export const DependencyAccordion = ({
 				<Typography component="span">{label}</Typography>
 			</AccordionSummary>
 			<AccordionDetails>
-				{dependencies?.map((dep: DependencyListItemProps) => (
+				{dependencies?.map((dep: UpdatedDependencyListItemProps) => (
 					<Box key={dep.name} display="flex" alignItems="center" gap={2}>
 						<ListItemButton onClick={() => setSelectedDep(dep.name)}>
-							<Tooltip title={`Current: ${dep.current}`} arrow>
-								<ListItemText primary={dep.name} />
+							<Tooltip
+								title={`Current: ${dep.current} | Latest: ${dep.latest}`}
+								arrow
+							>
+								<Box display="flex" alignItems="center" gap={1}>
+									<ListItemText primary={dep.name} />
+									{renderDependencyIcon(dep.current, dep.latest)}
+								</Box>
 							</Tooltip>
 						</ListItemButton>
 					</Box>

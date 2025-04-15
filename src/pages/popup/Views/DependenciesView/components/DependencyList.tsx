@@ -1,10 +1,8 @@
 import { Divider, Box, Typography, IconButton } from "@mui/material";
-import { useState } from "react";
 import { formatRepoName } from "@src/utils/utils";
-import type { DependencyListProps, RepoDependencies } from "@src/types";
+import type { DependencyListProps } from "@src/types";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
-import { useEffect } from "react";
-import { getDependencies } from "./getDependencies";
+import { useDependencies } from "./hooks/useDependencies";
 import { DependencyAccordion } from "./DependencyAccordion";
 
 export const DependencyList = ({
@@ -13,23 +11,8 @@ export const DependencyList = ({
 	selectedRepo,
 }: DependencyListProps) => {
 	const extractedRepoName = formatRepoName(selectedRepo);
-	const [fetchedDependencies, setFetchedDependencies] =
-		useState<RepoDependencies>({
-			dependencies: [],
-			devDependencies: [],
-		});
-	useEffect(() => {
-		const fetchDependencies = async () => {
-			const fetchedDependencies = await getDependencies(
-				selectedRepo,
-				"package.json",
-			);
-			setFetchedDependencies(fetchedDependencies);
-		};
-		fetchDependencies();
-	}, [selectedRepo]);
-
-	const { dependencies, devDependencies } = fetchedDependencies;
+	const { dependencies, devDependencies } = useDependencies(selectedRepo);
+	console.log("Dependencies:", dependencies);
 
 	return (
 		<div>

@@ -31,6 +31,11 @@ export interface DependencyListItemProps {
 	current: string;
 }
 
+export interface UpdatedDependencyListItemProps
+	extends DependencyListItemProps {
+	latest: string;
+}
+
 export interface RepoDependencies {
 	dependencies: DependencyListItemProps[];
 	devDependencies: DependencyListItemProps[];
