@@ -34,12 +34,12 @@ export const DependencyAccordion = ({
 					<Box key={dep.name} display="flex" alignItems="center" gap={2}>
 						<ListItemButton onClick={() => setSelectedDep(dep.name)}>
 							<Tooltip
-								title={`Current: ${dep.current} | Latest: ${dep.latest}`}
+								title={`Current: ${dep.current} | Latest: ${dep.latestVersion}`}
 								arrow
 							>
 								<Box display="flex" alignItems="center" gap={1}>
 									<ListItemText primary={dep.name} />
-									{renderDependencyIcon(dep.current, dep.latest)}
+									{renderDependencyIcon(dep.current, dep.latestVersion)}
 								</Box>
 							</Tooltip>
 						</ListItemButton>

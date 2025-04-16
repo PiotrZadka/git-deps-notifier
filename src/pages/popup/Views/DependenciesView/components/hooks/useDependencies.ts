@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getDependencies } from "./data/getDependencies";
-import { getVersion } from "./data/getVersion";
+import { getDepLatestVersion } from "./data/getDepLatestVersion";
 import type { RepoDependencies } from "@src/types";
 
 export const useDependencies = (selectedRepo: string) => {
@@ -30,8 +30,10 @@ export const useDependencies = (selectedRepo: string) => {
 
 			const dependenciesWithLatest = await Promise.all(
 				allDependencies.map(async (dep) => {
-					const latest = await getVersion({ dependencyName: dep.name });
-					return { ...dep, latest };
+					const { latestVersion } = await getDepLatestVersion({
+						dependencyName: dep.name,
+					});
+					return { ...dep, latestVersion };
 				}),
 			);
 

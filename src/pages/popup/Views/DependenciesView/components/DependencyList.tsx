@@ -12,7 +12,6 @@ export const DependencyList = ({
 }: DependencyListProps) => {
 	const extractedRepoName = formatRepoName(selectedRepo);
 	const { dependencies, devDependencies } = useDependencies(selectedRepo);
-	console.log("Dependencies:", dependencies);
 
 	return (
 		<div>
