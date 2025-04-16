@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { LandingPageContext } from '../../../../../context/landing-page-context';
+import { LandingPageContext } from '@src/context/landing-page-context';
 import {
   List,
   ListItemText,
@@ -10,7 +10,7 @@ import {
   Typography,
   Tooltip,
 } from '@mui/material';
-import type { RepoListProps } from '../../../../../types';
+import type { RepoListProps } from '@src/types';
 
 export const RepoList = ({ repos, onRemove }: RepoListProps) => {
   const { setSelectedRepo } = useContext(LandingPageContext);

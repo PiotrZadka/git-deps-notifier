@@ -1,7 +1,7 @@
 import { Divider, Box, Typography, IconButton } from '@mui/material';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import type { ChangeLogProps } from '@src/types';
-import { useChangelog } from './hooks/useChangelog';
+import { useChangelog } from '../hooks/useChangelog';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 

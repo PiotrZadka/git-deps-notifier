@@ -1,5 +1,5 @@
-import { getRelease } from './data/getRelease';
-import { getDepUrl } from './data/getDepUrl';
+import { getRelease } from '../data/getRelease';
+import { getDepUrl } from '../data/getDepUrl';
 import { useEffect, useState } from 'react';
 
 export const useChangelog = (depName: string) => {

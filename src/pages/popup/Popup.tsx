@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '@pages/popup/index.css';
-import { Repositories } from './Views/RepositoriesView/Repositories';
+import { Repositories } from './Views/Repositories';
 import { LandingPageContext } from '../../context/landing-page-context';
 
 export const Popup = () => {

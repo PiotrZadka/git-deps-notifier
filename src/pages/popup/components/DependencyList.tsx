@@ -2,7 +2,7 @@ import { Divider, Box, Typography, IconButton } from '@mui/material';
 import { formatRepoName } from '@src/utils/utils';
 import type { DependencyListProps } from '@src/types';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import { useDependencies } from './hooks/useDependencies';
+import { useDependencies } from '../hooks/useDependencies';
 import { DependencyAccordion } from './DependencyAccordion';
 
 export const DependencyList = ({

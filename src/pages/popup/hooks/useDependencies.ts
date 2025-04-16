@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getDependencies } from './data/getDependencies';
-import { getDepLatestVersion } from './data/getDepLatestVersion';
+import { getDependencies } from '../data/getDependencies';
+import { getDepLatestVersion } from '../data/getDepLatestVersion';
 import type { RepoDependencies } from '@src/types';
 
 export const useDependencies = (selectedRepo: string) => {

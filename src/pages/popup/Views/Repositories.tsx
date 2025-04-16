@@ -1,5 +1,5 @@
-import { RepoListSection } from './components/RepoListSection';
-import { AddRepo } from './components/AddRepo';
+import { RepoListSection } from '../components/RepoListSection';
+import { AddRepo } from '../components/AddRepo';
 import { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { useContext } from 'react';

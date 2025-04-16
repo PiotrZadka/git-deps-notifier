@@ -1,7 +1,7 @@
 import type { SelectedRepoProps } from '@src/types';
 import { useState } from 'react';
-import { DependencyList } from './components/DependencyList';
-import { Changelog } from '../ChangelogView/Changelog';
+import { DependencyList } from '../components/DependencyList';
+import { Changelog } from './Changelog';
 
 export const DependenciesPage = ({
   selectedRepo,
