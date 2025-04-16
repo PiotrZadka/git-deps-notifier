@@ -1,49 +1,49 @@
-import { Octokit } from "octokit";
-import { Buffer } from "buffer";
-import type { DependencyListItemProps } from "@src/types";
-import { removeSemanticVersioning } from "@src/utils/utils";
+import { Octokit } from 'octokit';
+import { Buffer } from 'buffer';
+import type { DependencyListItemProps } from '@src/types';
+import { removeSemanticVersioning } from '@src/utils/utils';
 
 export const getDependencies = async (
-	repoUrl: string,
-	depFile: string,
+  repoUrl: string,
+  depFile: string
 ): Promise<{
-	dependencies: DependencyListItemProps[];
-	devDependencies: DependencyListItemProps[];
+  dependencies: DependencyListItemProps[];
+  devDependencies: DependencyListItemProps[];
 }> => {
-	const [owner, repo] = repoUrl.split("/").slice(-2);
-	const authToken = import.meta.env.VITE_GITHUB_TOKEN;
+  const [owner, repo] = repoUrl.split('/').slice(-2);
+  const authToken = import.meta.env.VITE_GITHUB_TOKEN;
 
-	const octokit = new Octokit({
-		auth: authToken,
-	});
+  const octokit = new Octokit({
+    auth: authToken,
+  });
 
-	const { data } = await octokit.request(
-		"GET /repos/{owner}/{repo}/contents/{path}",
-		{
-			owner,
-			repo,
-			path: depFile,
-		},
-	);
+  const { data } = await octokit.request(
+    'GET /repos/{owner}/{repo}/contents/{path}',
+    {
+      owner,
+      repo,
+      path: depFile,
+    }
+  );
 
-	if (data?.content) {
-		const content = Buffer.from(data.content, data.encoding).toString("utf-8");
-		const parsedContent = JSON.parse(content);
+  if (data?.content) {
+    const content = Buffer.from(data.content, data.encoding).toString('utf-8');
+    const parsedContent = JSON.parse(content);
 
-		const dependencies: DependencyListItemProps[] = Object.entries(
-			parsedContent.dependencies || {},
-		).map(([name, current]) => ({
-			name,
-			current: removeSemanticVersioning(String(current)),
-		}));
-		const devDependencies: DependencyListItemProps[] = Object.entries(
-			parsedContent.devDependencies || {},
-		).map(([name, current]) => ({
-			name,
-			current: removeSemanticVersioning(String(current)),
-		}));
-		return { dependencies, devDependencies };
-	}
+    const dependencies: DependencyListItemProps[] = Object.entries(
+      parsedContent.dependencies || {}
+    ).map(([name, current]) => ({
+      name,
+      current: removeSemanticVersioning(String(current)),
+    }));
+    const devDependencies: DependencyListItemProps[] = Object.entries(
+      parsedContent.devDependencies || {}
+    ).map(([name, current]) => ({
+      name,
+      current: removeSemanticVersioning(String(current)),
+    }));
+    return { dependencies, devDependencies };
+  }
 
-	return { dependencies: [], devDependencies: [] };
+  return { dependencies: [], devDependencies: [] };
 };

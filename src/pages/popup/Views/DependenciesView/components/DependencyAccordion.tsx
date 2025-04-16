@@ -1,51 +1,51 @@
 import {
-	ListItemButton,
-	ListItemText,
-	Tooltip,
-	Box,
-	Typography,
-	Accordion,
-	AccordionSummary,
-	AccordionDetails,
-} from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+  ListItemButton,
+  ListItemText,
+  Tooltip,
+  Box,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import type {
-	UpdatedDependencyListItemProps,
-	DependencyAccordionProps,
-} from "@src/types";
-import { renderDependencyIcon } from "@src/utils/utils";
+  UpdatedDependencyListItemProps,
+  DependencyAccordionProps,
+} from '@src/types';
+import { renderDependencyIcon } from '@src/utils/utils';
 
 export const DependencyAccordion = ({
-	dependencies,
-	label,
-	setSelectedDep,
+  dependencies,
+  label,
+  setSelectedDep,
 }: DependencyAccordionProps) => {
-	return (
-		<Accordion>
-			<AccordionSummary
-				expandIcon={<ExpandMoreIcon />}
-				aria-controls="panel1-content"
-				id="panel1-header"
-			>
-				<Typography component="span">{label}</Typography>
-			</AccordionSummary>
-			<AccordionDetails>
-				{dependencies?.map((dep: UpdatedDependencyListItemProps) => (
-					<Box key={dep.name} display="flex" alignItems="center" gap={2}>
-						<ListItemButton onClick={() => setSelectedDep(dep.name)}>
-							<Tooltip
-								title={`Current: ${dep.current} | Latest: ${dep.latestVersion}`}
-								arrow
-							>
-								<Box display="flex" alignItems="center" gap={1}>
-									<ListItemText primary={dep.name} />
-									{renderDependencyIcon(dep.current, dep.latestVersion)}
-								</Box>
-							</Tooltip>
-						</ListItemButton>
-					</Box>
-				))}
-			</AccordionDetails>
-		</Accordion>
-	);
+  return (
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1-content"
+        id="panel1-header"
+      >
+        <Typography component="span">{label}</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        {dependencies?.map((dep: UpdatedDependencyListItemProps) => (
+          <Box key={dep.name} display="flex" alignItems="center" gap={2}>
+            <ListItemButton onClick={() => setSelectedDep(dep.name)}>
+              <Tooltip
+                title={`Current: ${dep.current} | Latest: ${dep.latestVersion}`}
+                arrow
+              >
+                <Box display="flex" alignItems="center" gap={1}>
+                  <ListItemText primary={dep.name} />
+                  {renderDependencyIcon(dep.current, dep.latestVersion)}
+                </Box>
+              </Tooltip>
+            </ListItemButton>
+          </Box>
+        ))}
+      </AccordionDetails>
+    </Accordion>
+  );
 };
