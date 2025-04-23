@@ -8,7 +8,11 @@
   "icons": {
     "48": "ext_icon_48.png"
   },
-  "permissions": [],
+  "permissions": ["identity"],
+  "oauth2": {
+    "client_id": "Ov23liJlNdmOvK4pZ924",
+    "scopes": ["repo", "user"]
+  },
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*", "<all_urls>"],
