@@ -1,25 +1,25 @@
 {
-	"manifest_version": 3,
-	"name": "Git Deps Notifier",
-	"description": "A browser extension to notify about new versions of dependencies in GitHub repositories.",
-	"action": {
-		"default_popup": "src/pages/popup/index.html"
-	},
-	"icons": {
-		"48": "ext_icon_48.png"
-	},
-	"permissions": ["identity", "storage", "activeTab"],
-	"oauth2": {
-		"client_id": "Ov23liJlNdmOvK4pZ924",
-		"scopes": ["repo", "user"]
-	},
-	"content_scripts": [
-		{
-			"matches": ["http://*/*", "https://*/*", "<all_urls>"],
-			"js": ["src/pages/popup/index.tsx"]
-		}
-	],
-	"background": {
-		"service_worker": "src/utils/background.tsx"
-	}
+  "manifest_version": 3,
+  "name": "Git Deps Notifier",
+  "description": "A browser extension to notify about new versions of dependencies in GitHub repositories.",
+  "action": {
+    "default_popup": "src/pages/popup/index.html"
+  },
+  "icons": {
+    "48": "ext_icon_48.png"
+  },
+  "permissions": ["identity", "storage", "activeTab"],
+  "oauth2": {
+    "client_id": "Ov23liJlNdmOvK4pZ924",
+    "scopes": ["repo", "user"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*", "<all_urls>"],
+      "js": ["src/pages/popup/index.tsx"]
+    }
+  ],
+  "background": {
+    "service_worker": "src/utils/background.tsx"
+  }
 }
