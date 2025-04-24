@@ -1,9 +1,9 @@
 import { Button, Box, Typography, Divider } from "@mui/material";
 import { FaGithub } from "react-icons/fa";
-import axios from "axios";
+import { useGitAuth } from "../hooks/useGitAuth";
 
 export const Login = () => {
-	const handleGitHubLogin = () => {};
+	const { handleLogin } = useGitAuth();
 
 	return (
 		<Box sx={{ m: 2, textAlign: "center" }}>
@@ -20,7 +20,7 @@ export const Login = () => {
 				<Button
 					variant="contained"
 					color="primary"
-					onClick={handleGitHubLogin}
+					onClick={handleLogin}
 					startIcon={<FaGithub />}
 				>
 					Login with GitHub
