@@ -18,8 +18,5 @@
       "matches": ["http://*/*", "https://*/*", "<all_urls>"],
       "js": ["src/pages/popup/index.tsx"]
     }
-  ],
-  "background": {
-    "service_worker": "src/utils/background.tsx"
-  }
+  ]
 }

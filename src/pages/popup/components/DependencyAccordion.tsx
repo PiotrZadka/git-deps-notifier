@@ -32,7 +32,12 @@ export const DependencyAccordion = ({
       </AccordionSummary>
       <AccordionDetails>
         {dependencies?.length === 0 ? (
-          <Box display="flex" justifyContent="center" alignItems="center" width="100%">
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            width="100%"
+          >
             <CircularProgress />
           </Box>
         ) : (
