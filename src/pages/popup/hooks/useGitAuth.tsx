@@ -1,37 +1,37 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const CLIENT_ID = navigator.userAgent.includes('Firefox')
+const CLIENT_ID = navigator.userAgent.includes("Firefox")
   ? import.meta.env.VITE_OAUTH_FIREFOX_CLIENT_ID
   : import.meta.env.VITE_OAUTH_CHROME_CLIENT_ID;
 
-const EXTENSION_ID = navigator.userAgent.includes('Firefox')
+const EXTENSION_ID = navigator.userAgent.includes("Firefox")
   ? import.meta.env.VITE_FIREFOX_EXTENSION_ID
   : import.meta.env.VITE_CHROME_EXTENSION_ID;
 
-const CLIENT_SECRET = navigator.userAgent.includes('Firefox')
+const CLIENT_SECRET = navigator.userAgent.includes("Firefox")
   ? import.meta.env.VITE_OAUTH_FIREFOX_CLIENT_SECRET
   : import.meta.env.VITE_OAUTH_CHROME_CLIENT_SECRET;
 
-const REDIRECT_URI = navigator.userAgent.includes('Firefox')
-  ? `moz-extension://${EXTENSION_ID}/redirect`
-  : `https://${EXTENSION_ID}.chromiumapp.org`;
+// const REDIRECT_URI = navigator.userAgent.includes('Firefox')
+//   ? `moz-extension://${EXTENSION_ID}/redirect`
+//   : `https://${EXTENSION_ID}.chromiumapp.org`;
 
-const AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=user,repo`;
+const AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user,repo`;
 
 export const useGitAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
-    () => localStorage.getItem('isAuthenticated') === 'true'
+    () => localStorage.getItem("isAuthenticated") === "true"
   );
 
   useEffect(() => {
-    localStorage.setItem('isAuthenticated', isAuthenticated.toString());
+    localStorage.setItem("isAuthenticated", isAuthenticated.toString());
   }, [isAuthenticated]);
 
   const exchangeCodeForToken = async (code) => {
     try {
       const response = await axios.post(
-        'https://github.com/login/oauth/access_token',
+        "https://github.com/login/oauth/access_token",
         {
           client_id: CLIENT_ID,
           client_secret: CLIENT_SECRET,
@@ -39,20 +39,20 @@ export const useGitAuth = () => {
         },
         {
           headers: {
-            Accept: 'application/json',
+            Accept: "application/json",
           },
         }
       );
 
       const { access_token } = response.data;
       if (access_token) {
-        localStorage.setItem('apiToken', access_token);
-        console.log('API token stored successfully');
+        localStorage.setItem("apiToken", access_token);
+        console.log("API token stored successfully");
       } else {
-        console.error('Failed to retrieve access token');
+        console.error("Failed to retrieve access token");
       }
     } catch (error) {
-      console.error('Error exchanging code for token:', error);
+      console.error("Error exchanging code for token:", error);
     }
   };
 
@@ -64,18 +64,18 @@ export const useGitAuth = () => {
       },
       async (redirectUrl) => {
         if (chrome.runtime.lastError || !redirectUrl) {
-          console.error('Authentication failed', chrome.runtime.lastError);
+          console.error("Authentication failed", chrome.runtime.lastError);
           return;
         }
         const urlParams = new URLSearchParams(new URL(redirectUrl).search);
-        const code = urlParams.get('code');
+        const code = urlParams.get("code");
 
         if (code) {
-          console.log('Authorization code:', code);
+          console.log("Authorization code:", code);
           setIsAuthenticated(true);
           await exchangeCodeForToken(code);
         } else {
-          console.error('Authorization code not found in redirect URL.');
+          console.error("Authorization code not found in redirect URL.");
         }
       }
     );
@@ -83,7 +83,7 @@ export const useGitAuth = () => {
 
   const handleLogout = () => {
     setIsAuthenticated(false);
-    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem("isAuthenticated");
   };
 
   return {

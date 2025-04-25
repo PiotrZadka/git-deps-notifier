@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const getDepLatestVersion = async ({
   dependencyName,
@@ -9,7 +9,7 @@ export const getDepLatestVersion = async ({
     const response = await axios.get(
       `https://registry.npmjs.org/${dependencyName}`
     );
-    const latestVersion = response.data['dist-tags'].latest;
+    const latestVersion = response.data["dist-tags"].latest;
     return { latestVersion };
   } catch (error) {
     console.error(

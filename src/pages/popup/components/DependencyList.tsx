@@ -1,9 +1,9 @@
-import { Divider, Box, Typography, IconButton } from '@mui/material';
-import { formatRepoName } from '@src/utils/utils';
-import type { DependencyListProps } from '@src/types';
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import { useDependencies } from '../hooks/useDependencies';
-import { DependencyAccordion } from './DependencyAccordion';
+import { Divider, Box, Typography, IconButton } from "@mui/material";
+import { formatRepoName } from "@src/utils/utils";
+import type { DependencyListProps } from "@src/types";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import { useDependencies } from "../hooks/useDependencies";
+import { DependencyAccordion } from "./DependencyAccordion";
 
 export const DependencyList = ({
   setSelectedRepo,
@@ -18,7 +18,7 @@ export const DependencyList = ({
       <Box display="flex" alignItems="center">
         <IconButton
           sx={{ borderRadius: 0 }}
-          onClick={() => setSelectedRepo('')}
+          onClick={() => setSelectedRepo("")}
         >
           <ArrowLeftIcon />
         </IconButton>

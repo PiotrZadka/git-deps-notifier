@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { getDependencies } from '../data/getDependencies';
-import { getDepLatestVersion } from '../data/getDepLatestVersion';
-import type { RepoDependencies } from '@src/types';
+import { useState, useEffect } from "react";
+import { getDependencies } from "../data/getDependencies";
+import { getDepLatestVersion } from "../data/getDepLatestVersion";
+import type { RepoDependencies } from "@src/types";
 
 export const useDependencies = (selectedRepo: string) => {
   const [fetchedDependencies, setFetchedDependencies] =
@@ -14,17 +14,17 @@ export const useDependencies = (selectedRepo: string) => {
     const fetchDependencies = async () => {
       const fetchedDependencies = await getDependencies(
         selectedRepo,
-        'package.json'
+        "package.json"
       );
 
       const allDependencies = [
         ...fetchedDependencies.dependencies.map((dep) => ({
           ...dep,
-          type: 'dependency',
+          type: "dependency",
         })),
         ...fetchedDependencies.devDependencies.map((dep) => ({
           ...dep,
-          type: 'devDependency',
+          type: "devDependency",
         })),
       ];
 
@@ -39,10 +39,10 @@ export const useDependencies = (selectedRepo: string) => {
 
       setFetchedDependencies({
         dependencies: dependenciesWithLatest.filter(
-          (dep) => dep.type === 'dependency'
+          (dep) => dep.type === "dependency"
         ),
         devDependencies: dependenciesWithLatest.filter(
-          (dep) => dep.type === 'devDependency'
+          (dep) => dep.type === "devDependency"
         ),
       });
     };

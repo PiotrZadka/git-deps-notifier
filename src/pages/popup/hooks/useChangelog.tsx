@@ -1,10 +1,10 @@
-import { getRelease } from '../data/getRelease';
-import { getDepUrl } from '../data/getDepUrl';
-import { useEffect, useState } from 'react';
+import { getRelease } from "../data/getRelease";
+import { getDepUrl } from "../data/getDepUrl";
+import { useEffect, useState } from "react";
 
 export const useChangelog = (depName: string) => {
   const [latestReleaseChangelog, setLatestReleaseChangelog] = useState([]);
-  const [repositoryUrl, setRepositoryUrl] = useState('');
+  const [repositoryUrl, setRepositoryUrl] = useState("");
 
   useEffect(() => {
     const fetchDepRepoUrl = async () => {

@@ -1,13 +1,13 @@
-import { Octokit } from 'octokit';
+import { Octokit } from "octokit";
 
 export const getRelease = async (depUrl: string) => {
-  const [owner, repo] = depUrl.split('/').slice(-2);
-  const authToken = localStorage.getItem('apiToken');
+  const [owner, repo] = depUrl.split("/").slice(-2);
+  const authToken = localStorage.getItem("apiToken");
   const octokit = new Octokit({
     auth: authToken,
   });
 
-  const { data } = await octokit.request('GET /repos/{owner}/{repo}/releases', {
+  const { data } = await octokit.request("GET /repos/{owner}/{repo}/releases", {
     owner,
     repo,
   });

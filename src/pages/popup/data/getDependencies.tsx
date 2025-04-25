@@ -1,7 +1,7 @@
-import { Octokit } from 'octokit';
-import { Buffer } from 'buffer';
-import type { DependencyListItemProps } from '@src/types';
-import { removeSemanticVersioning } from '@src/utils/utils';
+import { Octokit } from "octokit";
+import { Buffer } from "buffer";
+import type { DependencyListItemProps } from "@src/types";
+import { removeSemanticVersioning } from "@src/utils/utils";
 
 export const getDependencies = async (
   repoUrl: string,
@@ -10,15 +10,15 @@ export const getDependencies = async (
   dependencies: DependencyListItemProps[];
   devDependencies: DependencyListItemProps[];
 }> => {
-  const [owner, repo] = repoUrl.split('/').slice(-2);
-  const authToken = localStorage.getItem('apiToken');
+  const [owner, repo] = repoUrl.split("/").slice(-2);
+  const authToken = localStorage.getItem("apiToken");
 
   const octokit = new Octokit({
     auth: authToken,
   });
 
   const { data } = await octokit.request(
-    'GET /repos/{owner}/{repo}/contents/{path}',
+    "GET /repos/{owner}/{repo}/contents/{path}",
     {
       owner,
       repo,
@@ -27,7 +27,7 @@ export const getDependencies = async (
   );
 
   if (data?.content) {
-    const content = Buffer.from(data.content, data.encoding).toString('utf-8');
+    const content = Buffer.from(data.content, data.encoding).toString("utf-8");
     const parsedContent = JSON.parse(content);
 
     const dependencies: DependencyListItemProps[] = Object.entries(
@@ -49,13 +49,13 @@ export const getDependencies = async (
 };
 
 export const getRepoMetadata = async (repoUrl: string) => {
-  const [owner, repo] = repoUrl.split('/').slice(-2);
-  const authToken = localStorage.getItem('apiToken');
+  const [owner, repo] = repoUrl.split("/").slice(-2);
+  const authToken = localStorage.getItem("apiToken");
   console.log(authToken);
 
   const octokit = new Octokit({ auth: authToken });
 
-  const { data } = await octokit.request('GET /repos/{owner}/{repo}', {
+  const { data } = await octokit.request("GET /repos/{owner}/{repo}", {
     owner,
     repo,
   });
@@ -63,14 +63,14 @@ export const getRepoMetadata = async (repoUrl: string) => {
   return data;
 };
 
-export const getRepoFiles = async (repoUrl: string, path: string = '') => {
-  const [owner, repo] = repoUrl.split('/').slice(-2);
-  const authToken = localStorage.getItem('apiToken');
+export const getRepoFiles = async (repoUrl: string, path: string = "") => {
+  const [owner, repo] = repoUrl.split("/").slice(-2);
+  const authToken = localStorage.getItem("apiToken");
 
   const octokit = new Octokit({ auth: authToken });
 
   const { data } = await octokit.request(
-    'GET /repos/{owner}/{repo}/contents/{path}',
+    "GET /repos/{owner}/{repo}/contents/{path}",
     {
       owner,
       repo,

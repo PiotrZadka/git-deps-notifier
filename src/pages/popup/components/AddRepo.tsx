@@ -1,33 +1,33 @@
-import { Button, TextField, Box, Typography } from '@mui/material';
-import { Add } from '@mui/icons-material';
-import { useState } from 'react';
-import type { AddRepoSectionProps } from '@src/types';
-import { isValidGitHubUrl } from '@src/utils/utils';
+import { Button, TextField, Box, Typography } from "@mui/material";
+import { Add } from "@mui/icons-material";
+import { useState } from "react";
+import type { AddRepoSectionProps } from "@src/types";
+import { isValidGitHubUrl } from "@src/utils/utils";
 
 export const AddRepo = ({ onAdd, repos }: AddRepoSectionProps) => {
-  const [repoUrl, setRepoUrl] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [repoUrl, setRepoUrl] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleAddClick = () => {
     const trimmedRepoUrl = repoUrl.trim();
     if (!trimmedRepoUrl) {
-      setErrorMessage('Repository URL cannot be empty.');
+      setErrorMessage("Repository URL cannot be empty.");
       return;
     }
 
     if (!isValidGitHubUrl(trimmedRepoUrl)) {
-      setErrorMessage('Please enter a valid GitHub repository URL.');
+      setErrorMessage("Please enter a valid GitHub repository URL.");
       return;
     }
 
     if (repos.includes(trimmedRepoUrl)) {
-      setErrorMessage('This repository is already in the list.');
+      setErrorMessage("This repository is already in the list.");
       return;
     }
 
-    setErrorMessage('');
+    setErrorMessage("");
     onAdd(trimmedRepoUrl);
-    setRepoUrl('');
+    setRepoUrl("");
   };
 
   return (

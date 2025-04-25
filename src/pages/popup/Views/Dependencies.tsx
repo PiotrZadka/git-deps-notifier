@@ -1,13 +1,13 @@
-import type { SelectedRepoProps } from '@src/types';
-import { useState } from 'react';
-import { DependencyList } from '../components/DependencyList';
-import { Changelog } from './Changelog';
+import type { SelectedRepoProps } from "@src/types";
+import { useState } from "react";
+import { DependencyList } from "../components/DependencyList";
+import { Changelog } from "./Changelog";
 
 export const DependenciesPage = ({
   selectedRepo,
   setSelectedRepo,
 }: SelectedRepoProps) => {
-  const [selectedDep, setSelectedDep] = useState<string>('');
+  const [selectedDep, setSelectedDep] = useState<string>("");
 
   return (
     <>

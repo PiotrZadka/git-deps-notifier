@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { LandingPageContext } from '@src/context/landing-page-context';
+import { useContext } from "react";
+import { LandingPageContext } from "@src/context/landing-page-context";
 import {
   List,
   ListItemText,
@@ -9,8 +9,8 @@ import {
   Box,
   Typography,
   Tooltip,
-} from '@mui/material';
-import type { RepoListProps } from '@src/types';
+} from "@mui/material";
+import type { RepoListProps } from "@src/types";
 
 export const RepoList = ({ repos, onRemove }: RepoListProps) => {
   const { setSelectedRepo } = useContext(LandingPageContext);
@@ -25,7 +25,7 @@ export const RepoList = ({ repos, onRemove }: RepoListProps) => {
         <Typography
           variant="body1"
           sx={{ padding: 2 }}
-          style={{ whiteSpace: 'nowrap' }}
+          style={{ whiteSpace: "nowrap" }}
         >
           You haven't added any repositories yet.
         </Typography>
@@ -37,10 +37,10 @@ export const RepoList = ({ repos, onRemove }: RepoListProps) => {
               <Tooltip title={repo} arrow>
                 <Typography
                   sx={{
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                    maxWidth: '270px',
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    maxWidth: "270px",
                   }}
                 >
                   <ListItemText primary={repo} />

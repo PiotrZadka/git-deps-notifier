@@ -7,14 +7,14 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-} from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import CircularProgress from '@mui/material/CircularProgress';
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CircularProgress from "@mui/material/CircularProgress";
 import type {
   UpdatedDependencyListItemProps,
   DependencyAccordionProps,
-} from '@src/types';
-import { renderDependencyIcon } from '@src/utils/utils';
+} from "@src/types";
+import { renderDependencyIcon } from "@src/utils/utils";
 
 export const DependencyAccordion = ({
   dependencies,

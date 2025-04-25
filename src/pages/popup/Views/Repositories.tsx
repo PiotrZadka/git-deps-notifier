@@ -1,10 +1,10 @@
-import { RepoListSection } from '../components/RepoListSection';
-import { AddRepo } from '../components/AddRepo';
-import { useState, useEffect } from 'react';
-import { Box, Button } from '@mui/material';
-import { useContext } from 'react';
-import { LandingPageContext } from '@src/context/landing-page-context';
-import { useGitAuth } from '../hooks/useGitAuth';
+import { RepoListSection } from "../components/RepoListSection";
+import { AddRepo } from "../components/AddRepo";
+import { useState, useEffect } from "react";
+import { Box, Button } from "@mui/material";
+import { useContext } from "react";
+import { LandingPageContext } from "@src/context/landing-page-context";
+import { useGitAuth } from "../hooks/useGitAuth";
 
 export const Repositories = () => {
   const [repos, setRepos] = useState<string[]>([]);

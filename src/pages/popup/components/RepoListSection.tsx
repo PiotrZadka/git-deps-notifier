@@ -1,7 +1,7 @@
-import { DependenciesPage } from '../views/Dependencies';
-import { RepoList } from './RepoList';
+import { DependenciesPage } from "../views/Dependencies";
+import { RepoList } from "./RepoList";
 
-import type { RepoListSectionProps } from '@src/types';
+import type { RepoListSectionProps } from "@src/types";
 
 export const RepoListSection = ({
   repos,
