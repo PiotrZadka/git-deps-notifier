@@ -18,5 +18,10 @@
       "matches": ["http://*/*", "https://*/*", "<all_urls>"],
       "js": ["src/pages/popup/index.tsx"]
     }
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "git-deps-notifier@example.com"
+    }
+  }
 }

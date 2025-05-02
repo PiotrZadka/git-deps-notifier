@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+declare const browser: any;
+
 const CLIENT_ID = navigator.userAgent.includes("Firefox")
   ? import.meta.env.VITE_OAUTH_FIREFOX_CLIENT_ID
   : import.meta.env.VITE_OAUTH_CHROME_CLIENT_ID;
@@ -13,11 +15,13 @@ const CLIENT_SECRET = navigator.userAgent.includes("Firefox")
   ? import.meta.env.VITE_OAUTH_FIREFOX_CLIENT_SECRET
   : import.meta.env.VITE_OAUTH_CHROME_CLIENT_SECRET;
 
-// const REDIRECT_URI = navigator.userAgent.includes('Firefox')
-//   ? `moz-extension://${EXTENSION_ID}/redirect`
-//   : `https://${EXTENSION_ID}.chromiumapp.org`;
+const REDIRECT_URI = navigator.userAgent.includes("Firefox")
+  ? browser.identity.getRedirectURL()
+  : `https://${EXTENSION_ID}.chromiumapp.org`;
 
-const AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user,repo`;
+const AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(
+  REDIRECT_URI
+)}&scope=user,repo`;
 
 export const useGitAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -57,28 +61,55 @@ export const useGitAuth = () => {
   };
 
   const handleLogin = () => {
-    chrome.identity.launchWebAuthFlow(
-      {
-        url: AUTH_URL,
-        interactive: true,
-      },
-      async (redirectUrl) => {
-        if (chrome.runtime.lastError || !redirectUrl) {
-          console.error("Authentication failed", chrome.runtime.lastError);
-          return;
-        }
-        const urlParams = new URLSearchParams(new URL(redirectUrl).search);
-        const code = urlParams.get("code");
+    console.log(REDIRECT_URI);
+    if (navigator.userAgent.includes("Firefox")) {
+      const authUrl = `${AUTH_URL}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
 
-        if (code) {
-          console.log("Authorization code:", code);
-          setIsAuthenticated(true);
-          await exchangeCodeForToken(code);
-        } else {
-          console.error("Authorization code not found in redirect URL.");
+      browser.identity.launchWebAuthFlow(
+        {
+          url: authUrl,
+          interactive: true,
+        },
+        async (redirectUrl) => {
+          if (!redirectUrl) {
+            console.error("Authentication failed");
+            return;
+          }
+          const urlParams = new URLSearchParams(new URL(redirectUrl).search);
+          const code = urlParams.get("code");
+          if (code) {
+            console.log("Authorization code:", code);
+            setIsAuthenticated(true);
+            await exchangeCodeForToken(code);
+          } else {
+            console.error("Authorization code not found in redirect URL.");
+          }
         }
-      }
-    );
+      );
+    } else {
+      chrome.identity.launchWebAuthFlow(
+        {
+          url: AUTH_URL,
+          interactive: true,
+        },
+        async (redirectUrl) => {
+          if (chrome.runtime.lastError || !redirectUrl) {
+            console.error("Authentication failed", chrome.runtime.lastError);
+            return;
+          }
+          const urlParams = new URLSearchParams(new URL(redirectUrl).search);
+          const code = urlParams.get("code");
+
+          if (code) {
+            console.log("Authorization code:", code);
+            setIsAuthenticated(true);
+            await exchangeCodeForToken(code);
+          } else {
+            console.error("Authorization code not found in redirect URL.");
+          }
+        }
+      );
+    }
   };
 
   const handleLogout = () => {
