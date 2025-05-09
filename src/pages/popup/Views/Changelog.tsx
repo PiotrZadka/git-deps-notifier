@@ -17,8 +17,8 @@ export const Changelog = ({ selectedDep, setSelectedDep }: ChangeLogProps) => {
         <Typography variant="h6">{selectedDep}</Typography>
       </Box>
       <Divider />
-      <Box>
-        <Typography variant="subtitle1">Changelog</Typography>
+      <Box sx={{ mt: 2 }}>
+        <Typography variant="h5">Changelog</Typography>
         <Box sx={{ mt: 2 }}>
           {changelogData?.body ? (
             <ReactMarkdown remarkPlugins={[remarkGfm]}>

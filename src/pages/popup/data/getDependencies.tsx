@@ -51,7 +51,6 @@ export const getDependencies = async (
 export const getRepoMetadata = async (repoUrl: string) => {
   const [owner, repo] = repoUrl.split("/").slice(-2);
   const authToken = localStorage.getItem("apiToken");
-  console.log(authToken);
 
   const octokit = new Octokit({ auth: authToken });
 

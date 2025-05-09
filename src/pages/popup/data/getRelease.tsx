@@ -1,8 +1,12 @@
 import { Octokit } from "octokit";
+import { sanitizeRepoString } from "@src/utils/utils";
 
 export const getRelease = async (depUrl: string) => {
-  const [owner, repo] = depUrl.split("/").slice(-2);
+  const sanitizedUrl = sanitizeRepoString(depUrl);
+  const [owner, repo] = sanitizedUrl.split("/").slice(-2);
+
   const authToken = localStorage.getItem("apiToken");
+
   const octokit = new Octokit({
     auth: authToken,
   });
@@ -11,7 +15,6 @@ export const getRelease = async (depUrl: string) => {
     owner,
     repo,
   });
-  console.log(data[0]);
   return data.map((release) => ({
     tagName: release.tag_name,
     name: release.name,

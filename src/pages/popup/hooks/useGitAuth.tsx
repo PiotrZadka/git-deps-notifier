@@ -51,7 +51,6 @@ export const useGitAuth = () => {
       const { access_token } = response.data;
       if (access_token) {
         localStorage.setItem("apiToken", access_token);
-        console.log("API token stored successfully");
       } else {
         console.error("Failed to retrieve access token");
       }
@@ -61,7 +60,6 @@ export const useGitAuth = () => {
   };
 
   const handleLogin = () => {
-    console.log(REDIRECT_URI);
     if (navigator.userAgent.includes("Firefox")) {
       const authUrl = `${AUTH_URL}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
 
@@ -78,7 +76,6 @@ export const useGitAuth = () => {
           const urlParams = new URLSearchParams(new URL(redirectUrl).search);
           const code = urlParams.get("code");
           if (code) {
-            console.log("Authorization code:", code);
             setIsAuthenticated(true);
             await exchangeCodeForToken(code);
           } else {
@@ -101,7 +98,6 @@ export const useGitAuth = () => {
           const code = urlParams.get("code");
 
           if (code) {
-            console.log("Authorization code:", code);
             setIsAuthenticated(true);
             await exchangeCodeForToken(code);
           } else {

@@ -25,7 +25,6 @@ export const useChangelog = (depName: string) => {
     if (!repositoryUrl) return;
     const fetchLatestRelease = async () => {
       const data = await getRelease(repositoryUrl);
-      // Ensure body is string or undefined, not null
       const normalized = Array.isArray(data)
         ? data.map((item) => ({
             ...item,

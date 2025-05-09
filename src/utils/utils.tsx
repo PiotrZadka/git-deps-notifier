@@ -23,3 +23,24 @@ export const renderDependencyIcon = (current: string, latest: string) => {
 
 export const removeSemanticVersioning = (version: string) =>
   version.replace(/^[^\d]*/, "");
+
+export const sanitizeRepoString = (repo: string) => {
+  let sanitized = repo.split("#")[0];
+  if (sanitized.endsWith(".git")) {
+    sanitized = sanitized.slice(0, -4);
+  }
+  return sanitized;
+};
+
+export const cleanRepositoryUrl = (url: string) => {
+  if (url?.startsWith("git+")) {
+    url = url.replace("git+", "");
+  }
+  if (url?.startsWith("git")) {
+    url = url.replace("git", "https");
+  }
+  if (url?.endsWith(".git")) {
+    url = url.slice(0, -4);
+  }
+  return url;
+};
