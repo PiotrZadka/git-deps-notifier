@@ -14,6 +14,23 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
   const { selectedRepo, setSelectedRepo } = useContext(LandingPageContext);
   const isAddRepoSectionVisible = !selectedRepo;
 
+  // Load repos from localStorage on mount
+  useEffect(() => {
+    const storedRepos = localStorage.getItem("repos");
+    if (storedRepos) {
+      try {
+        setRepos(JSON.parse(storedRepos));
+      } catch {
+        setRepos([]);
+      }
+    }
+  }, []);
+
+  // Save repos to localStorage whenever repos changes
+  useEffect(() => {
+    localStorage.setItem("repos", JSON.stringify(repos));
+  }, [repos]);
+
   const addRepo = (repoUrl: string): boolean => {
     if (repos.includes(repoUrl)) {
       return false;

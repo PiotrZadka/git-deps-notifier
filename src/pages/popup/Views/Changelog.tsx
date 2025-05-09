@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 export const Changelog = ({ selectedDep, setSelectedDep }: ChangeLogProps) => {
-  const { changelogData } = useChangelog(selectedDep);
+  const { changelogData, repositoryUrl } = useChangelog(selectedDep);
 
   return (
     <Box>
@@ -20,9 +20,19 @@ export const Changelog = ({ selectedDep, setSelectedDep }: ChangeLogProps) => {
       <Box>
         <Typography variant="subtitle1">Changelog</Typography>
         <Box sx={{ mt: 2 }}>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {changelogData?.body}
-          </ReactMarkdown>
+          {changelogData?.body ? (
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {changelogData.body}
+            </ReactMarkdown>
+          ) : (
+            <Typography variant="body2" color="text.secondary">
+              No changelog available.{" "}
+              <a href={repositoryUrl} target="_blank" rel="noopener noreferrer">
+                View repository on GitHub
+              </a>{" "}
+              for possible release notes or README.
+            </Typography>
+          )}
         </Box>
       </Box>
     </Box>
