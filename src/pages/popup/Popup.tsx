@@ -7,13 +7,15 @@ import { useGitAuth } from "./hooks/useGitAuth";
 
 export const Popup = () => {
   const [selectedRepo, setSelectedRepo] = useState("");
-  const { isAuthenticated } = useGitAuth();
+  const { isAuthenticated, handleLogin, handleLogout } = useGitAuth();
 
   return (
-    <>
-      <LandingPageContext.Provider value={{ selectedRepo, setSelectedRepo }}>
-        {!isAuthenticated ? <Login /> : <Repositories />}
-      </LandingPageContext.Provider>
-    </>
+    <LandingPageContext.Provider value={{ selectedRepo, setSelectedRepo }}>
+      {!isAuthenticated ? (
+        <Login handleLogin={handleLogin} />
+      ) : (
+        <Repositories handleLogout={handleLogout} />
+      )}
+    </LandingPageContext.Provider>
   );
 };

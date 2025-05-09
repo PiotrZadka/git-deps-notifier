@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import { Box, Button } from "@mui/material";
 import { useContext } from "react";
 import { LandingPageContext } from "@src/context/landing-page-context";
-import { useGitAuth } from "../hooks/useGitAuth";
 
-export const Repositories = () => {
+type RepositoriesProps = {
+  handleLogout: () => void;
+};
+
+export const Repositories = ({ handleLogout }: RepositoriesProps) => {
   const [repos, setRepos] = useState<string[]>([]);
   const { selectedRepo, setSelectedRepo } = useContext(LandingPageContext);
-  const { handleLogout } = useGitAuth();
   const isAddRepoSectionVisible = !selectedRepo;
 
   const addRepo = (repoUrl: string): boolean => {

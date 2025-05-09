@@ -1,10 +1,11 @@
 import { Button, Box, Typography, Divider } from "@mui/material";
 import { FaGithub } from "react-icons/fa";
-import { useGitAuth } from "../hooks/useGitAuth";
 
-export const Login = () => {
-  const { handleLogin } = useGitAuth();
+type LoginProps = {
+  handleLogin: () => void;
+};
 
+export const Login = ({ handleLogin }: LoginProps) => {
   return (
     <Box sx={{ m: 2, textAlign: "center" }}>
       <Typography variant="h5" style={{ whiteSpace: "nowrap" }}>
