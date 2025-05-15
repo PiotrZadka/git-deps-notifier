@@ -71,3 +71,7 @@ For Firefox
 ## References
 
 Thanks to [@JohnBra](https://github.com/JohnBra) for providing template https://github.com/JohnBra/vite-web-extension
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
