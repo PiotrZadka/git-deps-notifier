@@ -8,7 +8,7 @@
   "icons": {
     "48": "ext_icon_48.png"
   },
-  "permissions": ["identity", "storage", "activeTab"],
+  "permissions": ["identity", "storage"],
   "oauth2": {
     "client_id": "Ov23liJlNdmOvK4pZ924",
     "scopes": ["repo", "user"]
