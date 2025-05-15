@@ -11,6 +11,8 @@ declare const browser: {
   };
 };
 
+console.log("hi");
+
 const CLIENT_ID = navigator.userAgent.includes("Firefox")
   ? import.meta.env.VITE_OAUTH_FIREFOX_CLIENT_ID
   : import.meta.env.VITE_OAUTH_CHROME_CLIENT_ID;
