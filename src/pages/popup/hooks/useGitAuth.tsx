@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-declare const browser: any;
+declare const browser: {
+  identity: {
+    getRedirectURL: () => string;
+    launchWebAuthFlow: (
+      details: { url: string; interactive: boolean },
+      callback: (redirectUrl?: string) => void
+    ) => void;
+  };
+};
 
 const CLIENT_ID = navigator.userAgent.includes("Firefox")
   ? import.meta.env.VITE_OAUTH_FIREFOX_CLIENT_ID
@@ -32,7 +40,7 @@ export const useGitAuth = () => {
     localStorage.setItem("isAuthenticated", isAuthenticated.toString());
   }, [isAuthenticated]);
 
-  const exchangeCodeForToken = async (code) => {
+  const exchangeCodeForToken = async (code: string): Promise<void> => {
     try {
       const response = await axios.post(
         "https://github.com/login/oauth/access_token",
@@ -54,8 +62,12 @@ export const useGitAuth = () => {
       } else {
         console.error("Failed to retrieve access token");
       }
-    } catch (error) {
-      console.error("Error exchanging code for token:", error);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response) {
+        console.error("Error exchanging code for token:", error.response.data);
+      } else {
+        console.error("Error exchanging code for token:", error);
+      }
     }
   };
 
@@ -68,7 +80,7 @@ export const useGitAuth = () => {
           url: authUrl,
           interactive: true,
         },
-        async (redirectUrl) => {
+        async (redirectUrl: string | undefined) => {
           if (!redirectUrl) {
             console.error("Authentication failed");
             return;
@@ -91,7 +103,11 @@ export const useGitAuth = () => {
         },
         async (redirectUrl) => {
           if (chrome.runtime.lastError || !redirectUrl) {
-            console.error("Authentication failed", chrome.runtime.lastError);
+            console.error(
+              "Authentication failed",
+              chrome.runtime.lastError || "No redirect URL returned",
+              { authUrl: AUTH_URL }
+            );
             return;
           }
           const urlParams = new URLSearchParams(new URL(redirectUrl).search);
@@ -101,7 +117,10 @@ export const useGitAuth = () => {
             setIsAuthenticated(true);
             await exchangeCodeForToken(code);
           } else {
-            console.error("Authorization code not found in redirect URL.");
+            console.error(
+              "Authorization code not found in redirect URL. Redirect URL:",
+              redirectUrl
+            );
           }
         }
       );
