@@ -1,4 +1,4 @@
-import { Button, TextField, Box, Typography } from "@mui/material";
+import { Button, TextField, Box, Typography, IconButton } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { useState } from "react";
 import type { AddRepoSectionProps } from "@src/types";
@@ -49,9 +49,14 @@ export const AddRepo = ({ onAdd, repos }: AddRepoSectionProps) => {
             fullWidth
           />
         </Box>
-        <Button variant="contained" onClick={handleAddClick}>
+        <IconButton
+          color="primary"
+          onClick={handleAddClick}
+          aria-label="add repository"
+          sx={{ ml: 1 }}
+        >
           <Add />
-        </Button>
+        </IconButton>
       </Box>
     </Box>
   );

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import {
   Box,
   Button,
+  IconButton,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -14,9 +15,10 @@ import {
   List,
   ListItem,
   ListItemText,
-  IconButton,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { RepoListBase } from "../components/RepoListBase";
 import { useContext } from "react";
 import { LandingPageContext } from "@src/context/landing-page-context";
 
@@ -111,7 +113,9 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
   return (
     <Box sx={{ m: 2 }}>
       <Box display="flex" justifyContent="flex-end" alignItems="center">
-        <Button onClick={handleLogout}>Logout</Button>
+        <IconButton onClick={handleLogout} color="primary" aria-label="logout">
+          <LogoutIcon />
+        </IconButton>
       </Box>
       <Tabs
         value={tabIndex}
@@ -119,8 +123,8 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
         sx={{ mb: 2 }}
         aria-label="Repositories tabs"
       >
-        <Tab label="Added Repos" />
-        <Tab label="Blacklisted Repos" />
+        <Tab label="Repositories" />
+        <Tab label="Blacklisted" />
       </Tabs>
       {tabIndex === 0 && (
         <>
@@ -135,29 +139,12 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
       )}
       {tabIndex === 1 && (
         <Box>
-          {blacklist.length === 0 ? (
-            <Typography>No blacklisted repositories.</Typography>
-          ) : (
-            <List>
-              {blacklist.map((repo) => (
-                <ListItem
-                  key={repo}
-                  secondaryAction={
-                    <IconButton
-                      edge="end"
-                      aria-label="delete"
-                      onClick={() => removeFromBlacklist(repo)}
-                      sx={{ ml: 1 }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  }
-                >
-                  <ListItemText primary={repo} />
-                </ListItem>
-              ))}
-            </List>
-          )}
+          <RepoListBase
+            repos={blacklist}
+            onRemove={removeFromBlacklist}
+            emptyText="No blacklisted repositories."
+            showTooltip={false}
+          />
         </Box>
       )}
       <Dialog open={!!pendingRepoUrl} onClose={() => setPendingRepoUrl(null)}>
