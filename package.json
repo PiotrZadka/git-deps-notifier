@@ -1,6 +1,6 @@
 {
   "name": "git-deps-notifier",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A browser extension to notify about new versions of dependencies in GitHub repositories.",
   "repository": {
     "type": "git",
