@@ -4,12 +4,13 @@ import {
   List,
   ListItemText,
   ListItemButton,
-  Divider,
   Button,
   Box,
   Typography,
   Tooltip,
+  IconButton,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import type { RepoListProps } from "@src/types";
 
 export const RepoList = ({ repos, onRemove }: RepoListProps) => {
@@ -17,10 +18,6 @@ export const RepoList = ({ repos, onRemove }: RepoListProps) => {
 
   return (
     <div>
-      <List>
-        <ListItemText primary="Your repositories" />
-      </List>
-      <Divider />
       {repos.length === 0 && (
         <Typography
           variant="body1"
@@ -47,9 +44,14 @@ export const RepoList = ({ repos, onRemove }: RepoListProps) => {
                 </Typography>
               </Tooltip>
             </ListItemButton>
-            <Button onClick={() => onRemove(repo)} variant="text">
-              Remove
-            </Button>
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => onRemove(repo)}
+              sx={{ ml: 1 }}
+            >
+              <DeleteIcon />
+            </IconButton>
           </Box>
         ))}
       </List>

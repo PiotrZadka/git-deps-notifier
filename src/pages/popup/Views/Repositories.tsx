@@ -9,7 +9,14 @@ import {
   DialogContent,
   DialogActions,
   Typography,
+  Tabs,
+  Tab,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useContext } from "react";
 import { LandingPageContext } from "@src/context/landing-page-context";
 
@@ -27,6 +34,7 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
   const [repos, setRepos] = useState<string[]>([]);
   const [pendingRepoUrl, setPendingRepoUrl] = useState<string | null>(null);
   const [blacklist, setBlacklist] = useState<string[]>([]);
+  const [tabIndex, setTabIndex] = useState(0);
   const { selectedRepo, setSelectedRepo } = useContext(LandingPageContext);
   const isAddRepoSectionVisible = !selectedRepo;
 
@@ -73,7 +81,6 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
 
   // Save repos to localStorage whenever repos changes
   useEffect(() => {
-    console.log("Saving repos to localStorage:", repos);
     localStorage.setItem("repos", JSON.stringify(repos));
   }, [repos]);
 
@@ -93,22 +100,66 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
 
   // Save blacklist to localStorage whenever it changes
   useEffect(() => {
-    console.log("Saving blacklist to localStorage:", blacklist);
     localStorage.setItem("repoBlacklist", JSON.stringify(blacklist));
   }, [blacklist]);
+
+  const removeFromBlacklist = (repoToRemove: string) => {
+    const updatedBlacklist = blacklist.filter((repo) => repo !== repoToRemove);
+    setBlacklist(updatedBlacklist);
+  };
 
   return (
     <Box sx={{ m: 2 }}>
       <Box display="flex" justifyContent="flex-end" alignItems="center">
         <Button onClick={handleLogout}>Logout</Button>
       </Box>
-      <RepoListSection
-        repos={repos}
-        onRemove={removeRepo}
-        selectedRepo={selectedRepo}
-        setSelectedRepo={setSelectedRepo}
-      />
-      {isAddRepoSectionVisible && <AddRepo onAdd={addRepo} repos={repos} />}
+      <Tabs
+        value={tabIndex}
+        onChange={(_, newValue) => setTabIndex(newValue)}
+        sx={{ mb: 2 }}
+        aria-label="Repositories tabs"
+      >
+        <Tab label="Added Repos" />
+        <Tab label="Blacklisted Repos" />
+      </Tabs>
+      {tabIndex === 0 && (
+        <>
+          <RepoListSection
+            repos={repos}
+            onRemove={removeRepo}
+            selectedRepo={selectedRepo}
+            setSelectedRepo={setSelectedRepo}
+          />
+          {isAddRepoSectionVisible && <AddRepo onAdd={addRepo} repos={repos} />}
+        </>
+      )}
+      {tabIndex === 1 && (
+        <Box>
+          {blacklist.length === 0 ? (
+            <Typography>No blacklisted repositories.</Typography>
+          ) : (
+            <List>
+              {blacklist.map((repo) => (
+                <ListItem
+                  key={repo}
+                  secondaryAction={
+                    <IconButton
+                      edge="end"
+                      aria-label="delete"
+                      onClick={() => removeFromBlacklist(repo)}
+                      sx={{ ml: 1 }}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  }
+                >
+                  <ListItemText primary={repo} />
+                </ListItem>
+              ))}
+            </List>
+          )}
+        </Box>
+      )}
       <Dialog open={!!pendingRepoUrl} onClose={() => setPendingRepoUrl(null)}>
         <DialogTitle>
           <Typography variant="subtitle2">
@@ -140,10 +191,6 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
               if (pendingRepoUrl) {
                 setBlacklist((prev) => {
                   const updated = [...prev, pendingRepoUrl];
-                  console.log(
-                    "Adding to blacklist and saving to localStorage:",
-                    updated
-                  );
                   localStorage.setItem(
                     "repoBlacklist",
                     JSON.stringify(updated)
