@@ -1,7 +1,7 @@
 import { Divider, Box, Typography, IconButton } from "@mui/material";
 import { formatRepoName } from "@src/utils/utils";
 import type { DependencyListProps } from "@src/types";
-import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { useDependencies } from "../hooks/useDependencies";
 import { DependencyAccordion } from "./DependencyAccordion";
 
@@ -14,13 +14,17 @@ export const DependencyList = ({
   const { dependencies, devDependencies } = useDependencies(selectedRepo);
 
   return (
-    <div>
+    <Box>
       <Box display="flex" alignItems="center">
         <IconButton
-          sx={{ borderRadius: 0 }}
+          sx={{
+            borderRadius: "50%",
+            transition: "background 0.2s",
+            "&:hover": { background: "rgba(0,0,0,0.08)" },
+          }}
           onClick={() => setSelectedRepo("")}
         >
-          <ArrowLeftIcon />
+          <ArrowBackRoundedIcon />
         </IconButton>
         <Typography variant="h6">{extractedRepoName}</Typography>
       </Box>
@@ -35,6 +39,6 @@ export const DependencyList = ({
         label="Dev Dependencies"
         setSelectedDep={setSelectedDep}
       />
-    </div>
+    </Box>
   );
 };

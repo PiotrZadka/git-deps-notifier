@@ -12,11 +12,7 @@ import {
   Typography,
   Tabs,
   Tab,
-  List,
-  ListItem,
-  ListItemText,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { RepoListBase } from "../components/RepoListBase";
 import { useContext } from "react";
@@ -120,7 +116,7 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
       <Tabs
         value={tabIndex}
         onChange={(_, newValue) => setTabIndex(newValue)}
-        sx={{ mb: 2 }}
+        sx={{}}
         aria-label="Repositories tabs"
       >
         <Tab label="Repositories" />
@@ -143,7 +139,6 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
             repos={blacklist}
             onRemove={removeFromBlacklist}
             emptyText="No blacklisted repositories."
-            showTooltip={false}
           />
         </Box>
       )}

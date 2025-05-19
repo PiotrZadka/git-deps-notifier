@@ -12,7 +12,6 @@ export const RepoList = ({ repos, onRemove }: RepoListProps) => {
       onRemove={onRemove}
       onSelect={setSelectedRepo}
       emptyText="You haven't added any repositories yet."
-      showTooltip={true}
     />
   );
 };

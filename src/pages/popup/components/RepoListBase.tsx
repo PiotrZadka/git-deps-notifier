@@ -15,7 +15,6 @@ type RepoListBaseProps = {
   onRemove: (repo: string) => void;
   onSelect?: (repo: string) => void;
   emptyText?: string;
-  showTooltip?: boolean;
 };
 
 export const RepoListBase = ({
@@ -23,7 +22,6 @@ export const RepoListBase = ({
   onRemove,
   onSelect,
   emptyText = "No repositories.",
-  showTooltip = true,
 }: RepoListBaseProps) => {
   if (!repos.length) {
     return (
@@ -40,43 +38,35 @@ export const RepoListBase = ({
   return (
     <List>
       {repos.map((repo) => (
-        <Box
-          key={repo}
-          display="flex"
-          alignItems="center"
-          gap={2}
-          sx={{ minHeight: 56 }}
-        >
+        <Box key={repo} display="flex" alignItems="center">
           {onSelect ? (
-            <ListItemButton onClick={() => onSelect(repo)} key={repo}>
-              {showTooltip ? (
-                <Tooltip title={repo} arrow>
-                  <Typography
-                    sx={{
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                      maxWidth: "270px",
-                    }}
-                  >
-                    <ListItemText primary={repo} />
-                  </Typography>
-                </Tooltip>
-              ) : (
-                <ListItemText primary={repo} />
-              )}
-            </ListItemButton>
+            <Tooltip title={repo} enterDelay={1000} arrow>
+              <ListItemButton
+                onClick={() => onSelect(repo)}
+                key={repo}
+                disableGutters
+              >
+                <Typography
+                  sx={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    maxWidth: "270px",
+                  }}
+                >
+                  <ListItemText primary={repo} />
+                </Typography>
+              </ListItemButton>
+            </Tooltip>
           ) : (
-            <ListItem>
-              <ListItemText primary={repo} />
-            </ListItem>
+            <Tooltip title={repo} enterDelay={1000} arrow>
+              <ListItem disableGutters sx={{ p: 0 }}>
+                <ListItemText primary={repo} />
+              </ListItem>
+            </Tooltip>
           )}
-          <IconButton
-            aria-label="delete"
-            onClick={() => onRemove(repo)}
-            sx={{ ml: 1 }}
-          >
-            <DeleteIcon fontSize="inherit" />
+          <IconButton aria-label="delete" onClick={() => onRemove(repo)}>
+            <DeleteIcon />
           </IconButton>
         </Box>
       ))}
