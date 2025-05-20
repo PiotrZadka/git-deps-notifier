@@ -4,10 +4,10 @@ import type { ChangeLogProps } from "@src/types";
 import { useChangelog } from "../hooks/useChangelog";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { changelogText } from "@src/content";
 
 export const Changelog = ({ selectedDep, setSelectedDep }: ChangeLogProps) => {
   const { changelogData, repositoryUrl } = useChangelog(selectedDep);
-
   return (
     <Box>
       <Box display="flex" alignItems="center">
@@ -18,7 +18,7 @@ export const Changelog = ({ selectedDep, setSelectedDep }: ChangeLogProps) => {
       </Box>
       <Divider />
       <Box sx={{ mt: 2 }}>
-        <Typography variant="h5">Changelog</Typography>
+        <Typography variant="h5">{changelogText.title}</Typography>
         <Box sx={{ mt: 2 }}>
           {changelogData?.body ? (
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
@@ -26,11 +26,10 @@ export const Changelog = ({ selectedDep, setSelectedDep }: ChangeLogProps) => {
             </ReactMarkdown>
           ) : (
             <Typography variant="body2" color="text.secondary">
-              No changelog available.{" "}
+              {changelogText.empty}
               <a href={repositoryUrl} target="_blank" rel="noopener noreferrer">
-                View repository on GitHub
-              </a>{" "}
-              for possible release notes or README.
+                {changelogText.missingRepoUrlText}
+              </a>
             </Typography>
           )}
         </Box>

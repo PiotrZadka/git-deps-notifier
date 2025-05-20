@@ -21,7 +21,7 @@ export const RepoListBase = ({
   repos,
   onRemove,
   onSelect,
-  emptyText = "No repositories.",
+  emptyText,
 }: RepoListBaseProps) => {
   if (!repos.length) {
     return (

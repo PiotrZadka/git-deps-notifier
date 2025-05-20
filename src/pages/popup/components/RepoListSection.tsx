@@ -1,4 +1,4 @@
-import { DependenciesPage } from "../views/Dependencies";
+import { DependenciesPage } from "../Views/Dependencies";
 import { RepoList } from "./RepoList";
 
 import type { RepoListSectionProps } from "@src/types";

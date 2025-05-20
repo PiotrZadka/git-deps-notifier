@@ -17,12 +17,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { RepoListBase } from "../components/RepoListBase";
 import { useContext } from "react";
 import { LandingPageContext } from "@src/context/landing-page-context";
-
-// Helper to check if a URL is a valid GitHub repo
-function isValidGitHubRepoUrl(url: string): boolean {
-  // Matches https://github.com/{owner}/{repo}[/*]
-  return /^https:\/\/github\.com\/[^\/]+\/[^\/]+(\/.*)?$/.test(url);
-}
+import { isValidGitHubUrl } from "@src/utils/utils";
+import { repositoriesText } from "@src/content";
 
 type RepositoriesProps = {
   handleLogout: () => void;
@@ -36,7 +32,6 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
   const { selectedRepo, setSelectedRepo } = useContext(LandingPageContext);
   const isAddRepoSectionVisible = !selectedRepo;
 
-  // Load repos and blacklist from localStorage on mount
   useEffect(() => {
     const storedRepos = localStorage.getItem("repos");
     if (storedRepos) {
@@ -56,19 +51,17 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
       }
     }
 
-    // Get current tab's URL and prompt if valid GitHub repo and not blacklisted
-    if (chrome && chrome.tabs) {
+    if (chrome?.tabs) {
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
         if (
-          tab &&
-          tab.url &&
-          isValidGitHubRepoUrl(tab.url) &&
+          tab?.url &&
+          isValidGitHubUrl(tab.url) &&
           (!storedBlacklist || !JSON.parse(storedBlacklist).includes(tab.url))
         ) {
           setRepos((prevRepos) => {
-            if (!prevRepos.includes(tab.url!)) {
-              setPendingRepoUrl(tab.url!);
+            if (tab.url && !prevRepos.includes(tab.url)) {
+              setPendingRepoUrl(tab.url);
             }
             return prevRepos;
           });
@@ -77,7 +70,6 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
     }
   }, []);
 
-  // Save repos to localStorage whenever repos changes
   useEffect(() => {
     localStorage.setItem("repos", JSON.stringify(repos));
   }, [repos]);
@@ -96,7 +88,6 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
     setRepos(updatedRepos);
   };
 
-  // Save blacklist to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("repoBlacklist", JSON.stringify(blacklist));
   }, [blacklist]);
@@ -110,7 +101,7 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
     <Box sx={{ m: 2 }}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Typography variant="h6" color="primary">
-          Git Deps Notifier
+          {repositoriesText.title}
         </Typography>
         <IconButton onClick={handleLogout} color="primary" aria-label="logout">
           <LogoutIcon />
@@ -122,8 +113,8 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
         sx={{}}
         aria-label="Repositories tabs"
       >
-        <Tab label="Repositories" />
-        <Tab label="Blacklisted" />
+        <Tab label={repositoriesText.tabs.repositories} />
+        <Tab label={repositoriesText.tabs.blacklisted} />
       </Tabs>
       {tabIndex === 0 && (
         <>
@@ -141,19 +132,19 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
           <RepoListBase
             repos={blacklist}
             onRemove={removeFromBlacklist}
-            emptyText="No blacklisted repositories."
+            emptyText={repositoriesText.emptyBlacklist}
           />
         </Box>
       )}
       <Dialog open={!!pendingRepoUrl} onClose={() => setPendingRepoUrl(null)}>
         <DialogTitle>
           <Typography variant="subtitle2">
-            Add detected GitHub repository?
+            {repositoriesText.dialog.addDetectedRepo}
           </Typography>
         </DialogTitle>
         <DialogContent>
           <Typography>
-            Detected repository URL:
+            {repositoriesText.dialog.detectedRepoUrl}
             <br />
             <b>{pendingRepoUrl}</b>
           </Typography>
@@ -169,7 +160,7 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
             color="primary"
             variant="contained"
           >
-            Add
+            {repositoriesText.dialog.addButton}
           </Button>
           <Button
             onClick={() => {
@@ -188,10 +179,10 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
             color="warning"
             variant="outlined"
           >
-            Ignore
+            {repositoriesText.dialog.ignoreButton}
           </Button>
           <Button onClick={() => setPendingRepoUrl(null)} color="secondary">
-            Cancel
+            {repositoriesText.dialog.cancelButton}
           </Button>
         </DialogActions>
       </Dialog>

@@ -9,8 +9,8 @@ export const getDepLatestVersion = async ({
     const response = await axios.get(
       `https://registry.npmjs.org/${dependencyName}`
     );
-    const latestVersion = response.data["dist-tags"].latest;
-    return { latestVersion };
+    const latest = response.data["dist-tags"].latest;
+    return { latest };
   } catch (error) {
     console.error(
       `Failed to fetch registry latest version for ${dependencyName}:`,

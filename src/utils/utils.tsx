@@ -12,6 +12,8 @@ export const formatRepoName = (repoUrl: string): string | null => {
 };
 
 export const renderDependencyIcon = (current: string, latest: string) => {
+  console.log("current", current);
+  console.log("latest", latest);
   const isNew = latest.localeCompare(current, undefined, { numeric: true }) > 0;
 
   return isNew ? (

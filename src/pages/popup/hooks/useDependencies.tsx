@@ -30,10 +30,10 @@ export const useDependencies = (selectedRepo: string) => {
 
       const dependenciesWithLatest = await Promise.all(
         allDependencies.map(async (dep) => {
-          const { latestVersion } = await getDepLatestVersion({
+          const { latest } = await getDepLatestVersion({
             dependencyName: dep.name,
           });
-          return { ...dep, latestVersion };
+          return { ...dep, latest };
         })
       );
 
