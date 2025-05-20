@@ -108,7 +108,10 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
 
   return (
     <Box sx={{ m: 2 }}>
-      <Box display="flex" justifyContent="flex-end" alignItems="center">
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Typography variant="h6" color="primary">
+          Git Deps Notifier
+        </Typography>
         <IconButton onClick={handleLogout} color="primary" aria-label="logout">
           <LogoutIcon />
         </IconButton>
