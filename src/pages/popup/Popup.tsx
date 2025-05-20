@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "@pages/popup/index.css";
-import { Repositories } from "./Views/Repositories";
-import { Login } from "./Views/Login";
+import { Repositories } from "./views/Repositories";
+import { Login } from "./views/Login";
 import { LandingPageContext } from "../../context/landing-page-context";
 import { useGitAuth } from "./hooks/useGitAuth";
 

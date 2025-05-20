@@ -64,6 +64,10 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
     localStorage.setItem("repos", JSON.stringify(repos));
   }, [repos]);
 
+  useEffect(() => {
+    localStorage.setItem("repoBlacklist", JSON.stringify(blacklist));
+  }, [blacklist]);
+
   const addRepo = (repoUrl: string): boolean => {
     if (repos.includes(repoUrl)) {
       return false;
@@ -77,10 +81,6 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
     const updatedRepos = repos.filter((repo) => repo !== repoToRemove);
     setRepos(updatedRepos);
   };
-
-  useEffect(() => {
-    localStorage.setItem("repoBlacklist", JSON.stringify(blacklist));
-  }, [blacklist]);
 
   const removeFromBlacklist = (repoToRemove: string) => {
     const updatedBlacklist = blacklist.filter((repo) => repo !== repoToRemove);

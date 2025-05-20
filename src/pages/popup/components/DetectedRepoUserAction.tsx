@@ -28,8 +28,30 @@ export const DetectedRepoUserAction = ({
   setPendingRepoUrl,
   dialogText,
 }: DetectedRepoUserActionProps) => {
+  const handleAddRepo = () => {
+    if (pendingRepoUrl) {
+      addRepo(pendingRepoUrl);
+      setPendingRepoUrl(null);
+    }
+  };
+
+  const handleIgnoreRepo = () => {
+    if (pendingRepoUrl) {
+      setBlacklist((prev) => {
+        const updated = [...prev, pendingRepoUrl];
+        localStorage.setItem("repoBlacklist", JSON.stringify(updated));
+        return updated;
+      });
+      setPendingRepoUrl(null);
+    }
+  };
+
+  const handleCancel = () => {
+    setPendingRepoUrl(null);
+  };
+
   return (
-    <Dialog open={!!pendingRepoUrl} onClose={() => setPendingRepoUrl(null)}>
+    <Dialog open={!!pendingRepoUrl} onClose={handleCancel}>
       <DialogTitle>
         <Typography variant="subtitle2">
           {dialogText.addDetectedRepo}
@@ -43,35 +65,13 @@ export const DetectedRepoUserAction = ({
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={() => {
-            if (pendingRepoUrl) {
-              addRepo(pendingRepoUrl);
-              setPendingRepoUrl(null);
-            }
-          }}
-          color="primary"
-          variant="contained"
-        >
+        <Button onClick={handleAddRepo} color="primary" variant="contained">
           {dialogText.addButton}
         </Button>
-        <Button
-          onClick={() => {
-            if (pendingRepoUrl) {
-              setBlacklist((prev) => {
-                const updated = [...prev, pendingRepoUrl];
-                localStorage.setItem("repoBlacklist", JSON.stringify(updated));
-                return updated;
-              });
-              setPendingRepoUrl(null);
-            }
-          }}
-          color="warning"
-          variant="outlined"
-        >
+        <Button onClick={handleIgnoreRepo} color="warning" variant="outlined">
           {dialogText.ignoreButton}
         </Button>
-        <Button onClick={() => setPendingRepoUrl(null)} color="secondary">
+        <Button onClick={handleCancel} color="secondary">
           {dialogText.cancelButton}
         </Button>
       </DialogActions>
