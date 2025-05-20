@@ -1,18 +1,8 @@
 import { RepoListSection } from "../components/RepoListSection";
 import { AddRepo } from "../components/AddRepo";
 import { useState, useEffect } from "react";
-import {
-  Box,
-  Button,
-  IconButton,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Typography,
-  Tabs,
-  Tab,
-} from "@mui/material";
+import { Box, IconButton, Typography, Tabs, Tab } from "@mui/material";
+import { DetectedRepoUserAction } from "../components/DetectedRepoUserAction";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { RepoListBase } from "../components/RepoListBase";
 import { useContext } from "react";
@@ -136,56 +126,13 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
           />
         </Box>
       )}
-      <Dialog open={!!pendingRepoUrl} onClose={() => setPendingRepoUrl(null)}>
-        <DialogTitle>
-          <Typography variant="subtitle2">
-            {repositoriesText.dialog.addDetectedRepo}
-          </Typography>
-        </DialogTitle>
-        <DialogContent>
-          <Typography>
-            {repositoriesText.dialog.detectedRepoUrl}
-            <br />
-            <b>{pendingRepoUrl}</b>
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => {
-              if (pendingRepoUrl) {
-                addRepo(pendingRepoUrl);
-                setPendingRepoUrl(null);
-              }
-            }}
-            color="primary"
-            variant="contained"
-          >
-            {repositoriesText.dialog.addButton}
-          </Button>
-          <Button
-            onClick={() => {
-              if (pendingRepoUrl) {
-                setBlacklist((prev) => {
-                  const updated = [...prev, pendingRepoUrl];
-                  localStorage.setItem(
-                    "repoBlacklist",
-                    JSON.stringify(updated)
-                  );
-                  return updated;
-                });
-                setPendingRepoUrl(null);
-              }
-            }}
-            color="warning"
-            variant="outlined"
-          >
-            {repositoriesText.dialog.ignoreButton}
-          </Button>
-          <Button onClick={() => setPendingRepoUrl(null)} color="secondary">
-            {repositoriesText.dialog.cancelButton}
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <DetectedRepoUserAction
+        pendingRepoUrl={pendingRepoUrl}
+        addRepo={addRepo}
+        setBlacklist={setBlacklist}
+        setPendingRepoUrl={setPendingRepoUrl}
+        dialogText={repositoriesText.dialog}
+      />
     </Box>
   );
 };
