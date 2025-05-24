@@ -47,9 +47,11 @@ export const AddRepo = ({ onAdd, repos }: AddRepoSectionProps) => {
           {errorMessage}
         </Typography>
       )}
+      {showWelcomeBubble && (
+        <WelcomeBubble onClick={() => setShowWelcomeBubble(false)} />
+      )}
       <Box display="flex" alignItems="center" gap={2}>
-        <Box flexGrow={1} position="relative">
-          {showWelcomeBubble && <WelcomeBubble />}
+        <Box flexGrow={1}>
           <TextField
             id="outlined-basic"
             placeholder={addRepoText.placeholder}

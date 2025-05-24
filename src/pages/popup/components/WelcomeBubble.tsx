@@ -1,33 +1,46 @@
 import { Typography } from "@mui/material";
 import { welcomeBubbleText } from "@src/content";
 
-export const WelcomeBubble = () => {
+type WelcomeBubbleProps = {
+  onClick?: () => void;
+};
+
+export const WelcomeBubble = ({ onClick }: WelcomeBubbleProps) => {
   return (
     <Typography
       variant="body2"
       color="textSecondary"
       sx={{
-        position: "absolute",
         background: "#007bff",
         color: "#fff",
-        padding: "10px",
-        borderRadius: "6px",
-        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+        px: 2,
+        py: 0.5,
+        borderRadius: "4px",
+        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.08)",
         zIndex: 1,
+        cursor: "pointer",
+        mb: 1,
+        whiteSpace: "nowrap",
+        fontSize: 14,
+        display: "inline-block",
+        position: "relative",
+        marginBottom: "18px",
+        padding: "4px 12px",
         "&::after": {
           content: '""',
           position: "absolute",
-          bottom: "-10px",
-          left: "20px",
-          width: "0",
-          height: "0",
-          borderLeft: "5px solid transparent",
-          borderRight: "5px solid transparent",
-          borderTop: "10px solid #007bff",
+          left: "50%",
+          transform: "translateX(-50%)",
+          top: "100%",
+          width: 0,
+          height: 0,
+          borderLeft: "12px solid transparent",
+          borderRight: "12px solid transparent",
+          borderTop: "14px solid #007bff",
+          zIndex: 2,
         },
-        top: "-40px",
-        left: "10px",
       }}
+      onClick={onClick}
     >
       {welcomeBubbleText.body}
     </Typography>

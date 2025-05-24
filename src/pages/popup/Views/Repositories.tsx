@@ -1,9 +1,18 @@
 import { RepoListSection } from "../components/RepoListSection";
 import { AddRepo } from "../components/AddRepo";
 import { useState, useEffect } from "react";
-import { Box, IconButton, Typography, Tabs, Tab } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Typography,
+  Tabs,
+  Tab,
+  Divider,
+  Stack,
+} from "@mui/material";
 import { DetectedRepoUserAction } from "../components/DetectedRepoUserAction";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { SocialLinksRow } from "../components/SocialLinksRow";
 import { RepoListBase } from "../components/RepoListBase";
 import { useContext } from "react";
 import { LandingPageContext } from "@src/context/landing-page-context";
@@ -114,7 +123,13 @@ export const Repositories = ({ handleLogout }: RepositoriesProps) => {
             selectedRepo={selectedRepo}
             setSelectedRepo={setSelectedRepo}
           />
-          {isAddRepoSectionVisible && <AddRepo onAdd={addRepo} repos={repos} />}
+          {isAddRepoSectionVisible && (
+            <>
+              <AddRepo onAdd={addRepo} repos={repos} />
+              <Divider sx={{ my: 2 }} />
+              <SocialLinksRow />
+            </>
+          )}
         </>
       )}
       {tabIndex === 1 && (
