@@ -1,7 +1,5 @@
 [<img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="for Firefox" height="60px">](https://addons.mozilla.org/en-GB/firefox/addon/git-deps-notifier/)
 
-<div  align="center">
-
 <h1>Git Deps Notifier</h1
 
 </div>
