@@ -7,20 +7,20 @@
 
 ## Intro
 
-Chrome/Firefox extension build with <b>React + Vite + TypeScript + MaterialUI</b> to help you stay updated with your project dependencies.
+Firefox/Chrome extension build with <b>React + Vite + TypeScript + MaterialUI</b> to help you stay updated with your project dependencies.
 
 ## Features
 
-- GitHub Integration: Securely authenticate with your GitHub account to generate a user-specific API token, enabling the extension to make authorised requests on your behalf.
-- Dependency tracking: Automatically scan package.json files for dependencies in Node.js based projects.
-- Page detection: Automatically pick up valid Git Repositories and suggest them to be added to the list.
-- Version check: Compare current project versions with the latest releases available in npm
-- Latest changelog view: Stay up to date with latest changes made to your dependencies
+- <b>GitHub Integration:</b> Securely authenticate with your GitHub account to generate a user-specific API token, enabling the extension to make authorised requests on your behalf.
+- <b>Dependency tracking:</b> Automatically scan package.json files for dependencies in Node.js based projects.
+- <b>Page detection:</b> Automatically pick up valid Git Repositories and suggest them to be added to the list.
+- <b>Version check:</b> Compare current project versions with the latest releases available in npm
+- <b>Latest changelog view:</b> Stay up to date with latest changes made to your dependencies
 
 ## Support
 
-- Javascript based projects (React, Vue, Node etc)
-- Other languages coming soon™
+- <b>Javascript</b> based projects (React, Vue, Node etc)
+- Other languages coming <b>soon™</b>
 
 ## Tech Stack
 
