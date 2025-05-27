@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import { useState } from "react";
 import "@pages/popup/index.css";
 import { Repositories } from "./views/Repositories";

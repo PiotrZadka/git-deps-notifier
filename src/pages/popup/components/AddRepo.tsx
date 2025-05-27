@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import { TextField, Box, Typography, IconButton } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { useState, useEffect } from "react";

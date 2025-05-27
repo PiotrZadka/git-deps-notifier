@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 export interface SelectedRepoProps {
   selectedRepo: string;
   setSelectedRepo: React.Dispatch<React.SetStateAction<string>>;

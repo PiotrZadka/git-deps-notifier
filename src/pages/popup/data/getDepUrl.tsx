@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import axios from "axios";
 import { cleanRepositoryUrl } from "@src/utils/utils";
 

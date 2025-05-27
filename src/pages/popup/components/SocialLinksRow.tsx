@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import { Box, Tooltip } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";

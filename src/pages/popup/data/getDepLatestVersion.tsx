@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import axios from "axios";
 
 export const getDepLatestVersion = async ({

@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import type { SelectedRepoProps } from "@src/types";
 import { useState } from "react";
 import { DependencyList } from "../components/DependencyList";

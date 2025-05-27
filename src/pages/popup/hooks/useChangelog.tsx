@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import { getRelease } from "../data/getRelease";
 import { getDepUrl } from "../data/getDepUrl";
 import { useEffect, useState } from "react";

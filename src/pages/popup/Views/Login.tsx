@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import { Button, Box, Typography, Divider } from "@mui/material";
 import { loginText } from "../../../content";
 import { FaGithub } from "react-icons/fa";

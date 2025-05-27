@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import { Octokit } from "octokit";
 import { Buffer } from "buffer";
 import type { DependencyListItemProps } from "@src/types";

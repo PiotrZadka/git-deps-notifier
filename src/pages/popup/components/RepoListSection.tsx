@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import { DependenciesPage } from "../views/Dependencies";
 import { RepoList } from "./RepoList";
 

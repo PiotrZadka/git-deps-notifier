@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 export const loginText = {
   title: "Github Dependency Notifier",
   description:

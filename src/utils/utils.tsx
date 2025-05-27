@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import UpdateIcon from "@mui/icons-material/Update";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 

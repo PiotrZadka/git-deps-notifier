@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import { Divider, Box, Typography, IconButton } from "@mui/material";
 import { formatRepoName } from "@src/utils/utils";
 import type { DependencyListProps } from "@src/types";

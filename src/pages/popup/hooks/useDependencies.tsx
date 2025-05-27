@@ -1,3 +1,5 @@
+// © 2025 Piotr Zadka. Proprietary. Not for redistribution or reuse without permission.
+
 import { useState, useEffect } from "react";
 import { getDependencies } from "../data/getDependencies";
 import { getDepLatestVersion } from "../data/getDepLatestVersion";

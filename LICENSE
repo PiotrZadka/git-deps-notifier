@@ -4,11 +4,13 @@ This project includes:
 
 1. Open-source components licensed under the MIT License on the following open-source project:
    https://github.com/JohnBra/vite-web-extension (see below).
-2. Proprietary components authored by Piotr Zadka, which are not licensed for redistribution or reuse without explicit permission. See `LICENSE_PROPRIETARY.txt` for details.
+2. Proprietary components authored by Piotr Zadka, which are not licensed for redistribution or reuse without explicit permission. See `LICENSE_PROPRIETARY` for details.
 
 ---
 
 # MIT License (for open-source components)
+
+The following license applies only to portions of this project derived from open-source components (e.g., vite-web-extension). All other original work remains proprietary and is not covered by the MIT License.
 
 The MIT License (MIT)
 
