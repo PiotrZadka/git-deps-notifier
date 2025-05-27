@@ -78,4 +78,4 @@ Portions of this project are based on [vite-web-extension](https://github.com/Jo
 
 All other code and assets are © 2025 Piotr Zadka and are proprietary. Redistribution, modification, or reuse of proprietary parts without explicit permission is prohibited.
 
-See [LICENSE_PROPRIETARY](./LICENSE_PROPRIETARY) for MIT-licensed portions.
+See [LICENSE_PROPRIETARY](./LICENSE_PROPRIETARY.md) for MIT-licensed portions.

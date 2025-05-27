@@ -5,6 +5,7 @@ Portions of this project, including all files not covered under the MIT license,
 These files may not be copied, modified, distributed, or used without express written permission from the author.
 
 This includes but is not limited to:
+
 - All custom application logic in `src/`
 - Assets in `public/`
 - Any configuration or deployment code not based on open-source templates
