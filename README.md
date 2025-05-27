@@ -1,14 +1,16 @@
+[<img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="for Firefox" height="60px">](https://addons.mozilla.org/en-GB/firefox/addon/git-deps-notifier/)
+
 <div  align="center">
 
-<h1>Track updates for your dependencies</h1>
+<h1>Git Deps Notifier</h1
 
 </div>
 
 ## Intro
 
-Chrome/Firefox extension build with <b>React + Vite + TypeScript + MaterialUI</b>
+Chrome/Firefox extension build with <b>React + Vite + TypeScript + MaterialUI to stay updated with your project dependencies</b>
 
-## Features
+## Tech Stack
 
 - [React 19](https://reactjs.org/)
 
@@ -20,53 +22,13 @@ Chrome/Firefox extension build with <b>React + Vite + TypeScript + MaterialUI</b
 
 - [Chrome Extension Manifest Version 3](https://developer.chrome.com/docs/extensions/mv3/intro/)
 
-## Usage
+## Features
 
-### Developing and building
-
-Running `dev` or `build` commands without specifying the browser target will build
-
-for Chrome by default.
-
-1. Run `nvm use` (check .nvmrc for node version)
-
-2. Run `yarn install`
-
-3. Run `yarn dev[:chrome|:firefox]`
-
-Running a `dev` command will build the extension and watch for changes in the
-
-source files. Changing the source files will refresh the corresponding
-
-`dist_<chrome|firefox>` folder.
-
-To create an optimized production build, run `yarn build[:chrome|:firefox]`
-
-Project uses Prettier from vscode pluggins as default formatter. Run `yarn format` to format your code.
-
-### Load your extension to browser
-
-For Chrome
-
-1. Open - Chrome browser
-
-2. Access - [chrome://extensions](chrome://extensions)
-
-3. Tick - Developer mode
-
-4. Find - Load unpacked extension
-
-5. Select - `dist_chrome` folder in this project (after dev or build)
-
-For Firefox
-
-1. Open - Firefox browser
-
-2. Access - [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox)
-
-3. Click - Load temporary Add-on
-
-4. Select - any file in `dist_firefox` folder (i.e. `manifest.json`) in this project (after dev or build)
+- GitHub Integration: Securely authenticate with your GitHub account to generate a user-specific API token, enabling the extension to make authorised requests on your behalf.
+- Dependency tracking: Automatically scan package.json files for dependencies in Node.js based projects.
+- Page detection: Automatically pick up valid Git Repositories and suggest them to be added to the list.
+- Version check: Compare current project versions with the latest releases available in npm
+- Latest changelog view: Stay up to date with latest changes made to your dependencies
 
 ## References
 
