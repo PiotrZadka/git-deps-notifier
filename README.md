@@ -72,6 +72,10 @@ For Firefox
 
 Thanks to [@JohnBra](https://github.com/JohnBra) for providing template https://github.com/JohnBra/vite-web-extension
 
-## License
+## Licensing Notice
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+Portions of this project are based on [vite-web-extension](https://github.com/JohnBra/vite-web-extension) and are licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+All other code and assets are © 2025 Piotr Zadka and are proprietary. Redistribution, modification, or reuse of proprietary parts without explicit permission is prohibited.
+
+See [LICENSE_PROPRIETARY](./LICENSE_PROPRIETARY) for MIT-licensed portions.
