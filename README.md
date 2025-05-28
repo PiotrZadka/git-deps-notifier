@@ -1,5 +1,5 @@
 [<img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="for Firefox" height="60px">](https://addons.mozilla.org/en-GB/firefox/addon/git-deps-notifier/)
-[<img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Google_Chrome_icon_%282011%29.png" alt="for Chrome" height="60px">](https://chromewebstore.google.com/detail/nakcdmhknjgpddhaocihhleedajhnagg/preview?hl=en-GB&authuser=0&pli=1)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Google_Chrome_icon_%282011%29.png" alt="for Chrome" height="60px">](https://chromewebstore.google.com/detail/git-deps-notifier/nakcdmhknjgpddhaocihhleedajhnagg)
 
 <h1><img src="public/ext_icon_48.png" alt="Logo" height="30px" style="vertical-align: middle;"> Git Deps Notifier</h1>
 
