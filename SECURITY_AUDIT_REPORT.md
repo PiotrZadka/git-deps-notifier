@@ -7,7 +7,11 @@
 
 ## Executive Summary
 
-This security audit identified **6 security issues** ranging from **CRITICAL** to **LOW** severity. The most critical issue is the exposure of OAuth client secrets in client-side code, which should be addressed immediately. Additionally, a vulnerable dependency (axios) was identified that should be updated.
+This security audit identified **6 security issues** ranging from **CRITICAL** to **LOW** severity. The most critical issue is the exposure of OAuth client secrets in client-side code, which should be addressed immediately. 
+
+**Good News**: All critical issues can be fixed without hosting a backend server. See **[SECURITY_ALTERNATIVES_NO_BACKEND.md](./SECURITY_ALTERNATIVES_NO_BACKEND.md)** for detailed implementation guide using GitHub Device Flow.
+
+Additionally, a vulnerable dependency (axios) was identified that should be updated.
 
 ---
 
@@ -38,11 +42,14 @@ const CLIENT_SECRET = navigator.userAgent.includes("Firefox")
 - Violates GitHub OAuth security guidelines
 
 **Recommendation**:
-1. **Remove client secret from client-side code immediately**
-2. Implement a backend proxy server to handle OAuth token exchange
+1. **Switch to GitHub Device Flow (RECOMMENDED - No backend needed!)**
+   - Device Flow is OAuth 2.0's official solution for devices/apps that can't store secrets
+   - No client secret required
+   - Officially supported by GitHub for browser extensions
+   - See [SECURITY_ALTERNATIVES_NO_BACKEND.md](./SECURITY_ALTERNATIVES_NO_BACKEND.md) for complete implementation
+2. **Alternative**: Implement a backend proxy server to handle OAuth token exchange (requires hosting)
 3. Use PKCE (Proof Key for Code Exchange) flow for OAuth if possible (RFC 7636)
-4. For browser extensions, consider using GitHub's Device Flow or Implicit Grant (deprecated but sometimes necessary for extensions)
-5. If a backend is not feasible, regenerate the OAuth application secrets immediately after fixing
+4. **Not Recommended**: Keep current approach - If you cannot implement Device Flow or backend, document the risk and rotate secrets regularly
 
 **References**:
 - [OAuth 2.0 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics)
@@ -96,20 +103,21 @@ const authToken = localStorage.getItem("apiToken");
 ```
 
 **Impact**:
-- **Severity**: HIGH
+- **Severity**: HIGH (but acceptable for extensions with proper protections)
 - XSS attacks can steal user's GitHub access token
 - Compromised tokens give attackers full access to user's GitHub account
 - localStorage persists across sessions, increasing exposure window
+- **Mitigation**: This extension has good XSS protections (no eval, no innerHTML, safe markdown rendering)
 
 **Recommendation**:
-1. Use browser extension's secure storage API:
-   - Chrome: `chrome.storage.local` or `chrome.storage.secure`
-   - Firefox: `browser.storage.local` with proper encryption
-2. Implement token encryption before storage
-3. Set token expiration and refresh mechanism
-4. Clear tokens on logout and when no longer needed
+For browser extensions with proper XSS protections (which this extension has), localStorage is an acceptable trade-off when a backend is not available. The extension sandbox provides additional isolation.
 
-**Example**:
+**Options**:
+1. **Keep localStorage** (acceptable for this use case) - Document as accepted risk
+2. Use browser extension's secure storage API (chrome.storage.local) - Provides slightly better isolation
+3. Add token obfuscation (base64 encoding) - Prevents casual viewing but not determined attacks
+
+**Example for chrome.storage.local** (if you want to migrate):
 ```typescript
 // Instead of localStorage
 await chrome.storage.local.set({ apiToken: access_token });

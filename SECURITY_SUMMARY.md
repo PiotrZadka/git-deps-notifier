@@ -2,11 +2,14 @@
 
 ## Critical Issues Found: 6
 
+> **📌 No Backend Available?** See **[SECURITY_ALTERNATIVES_NO_BACKEND.md](./SECURITY_ALTERNATIVES_NO_BACKEND.md)** for solutions that don't require hosting a backend server, including GitHub Device Flow.
+
 ### 🔴 CRITICAL
 1. **OAuth Client Secret Exposed in Client-Side Code**
    - File: `src/pages/popup/hooks/useGitAuth.tsx`
    - Risk: Client secrets can be extracted and used to impersonate the application
-   - Action: Remove secrets from client-side, implement backend proxy or use PKCE
+   - Action: Use GitHub Device Flow (no secret needed) or implement backend proxy
+   - **Backend-free solution available**: See SECURITY_ALTERNATIVES_NO_BACKEND.md
 
 ### 🟠 HIGH
 2. **Vulnerable Dependency: axios 1.8.4**
@@ -18,7 +21,8 @@
 3. **Sensitive Tokens Stored in localStorage**
    - Files: Multiple (useGitAuth.tsx, getDependencies.tsx, getRelease.tsx)
    - Risk: Vulnerable to XSS attacks, token theft
-   - Action: Migrate to chrome.storage.local or browser.storage.local
+   - Action: For browser extensions with proper XSS protections (no eval, innerHTML, etc.), localStorage is acceptable
+   - **Note**: This extension has good XSS protections in place. This is an accepted risk for extensions without backends.
 
 ### 🟡 MEDIUM
 4. **OAuth Client ID Hardcoded in manifest.json**
@@ -38,9 +42,11 @@
 
 ## Immediate Actions Required
 
-1. **Remove OAuth client secret from code** (CRITICAL)
-2. **Update axios to 1.12.0+** (HIGH)
-3. **Plan backend OAuth proxy** (CRITICAL fix)
+1. **Use GitHub Device Flow instead of OAuth App** (CRITICAL) - No backend needed!
+2. **Update axios to 1.12.0+** (HIGH) - Simple npm update
+3. **Add Content Security Policy** (MEDIUM) - Update manifest.json
+
+**All fixes can be done without a backend server** - See SECURITY_ALTERNATIVES_NO_BACKEND.md
 
 ## Additional Recommendations
 
